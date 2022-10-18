@@ -10,6 +10,8 @@ using CDP_Project.Models;
 using CDP.Services;
 using CDP.Models.ViewModels;
 using NuGet.Protocol.Plugins;
+using System.Diagnostics;
+using CDP.Services.Exceptions;
 
 namespace CDP.Controllers
 {
@@ -32,28 +34,27 @@ namespace CDP.Controllers
         }
 
         // GET: Usuarios/Details/5
-        //public async Task<IActionResult> Details(int? id)
-        //{
-        //    if (id == null || _usuarioService.Usuario == null)
-        //    {
-        //        return NotFound();
-        //    }
+        public async Task<IActionResult> Details(int? id)
+        {
+            if (id == null)
+            {
+                return RedirectToAction(nameof(Error), new { message = "Id not privided" });
+            }
 
-        //    var usuario = await _usuarioService.Usuario
-        //        .FirstOrDefaultAsync(m => m.Id == id);
-        //    if (usuario == null)
-        //    {
-        //        return NotFound();
-        //    }
+            var usuario = await _usuarioService.FindByIdAsync(id.Value);
+            if (usuario == null)
+            {
+                return NotFound();
+            }
 
-        //    return View(usuario);
-        //}
+            return View(usuario);
+        }
 
         // GET: Usuarios/Create
         public async Task<IActionResult> Create()
         {
             var cargo = await _cargosService.FindAllAsync();
-            var viewModel = new UsuarioFormViewmodel { Cargos = cargo };
+            var viewModel = new UsuarioFormViewModel { Cargos = cargo };
 
             return View(viewModel);
         }
@@ -68,7 +69,7 @@ namespace CDP.Controllers
             if (!ModelState.IsValid)
             {
                 var cargos = await _cargosService.FindAllAsync();
-                var viewModel = new UsuarioFormViewmodel { Usuario = usuario, Cargos = cargos};
+                var viewModel = new UsuarioFormViewModel { Usuario = usuario, Cargos = cargos};
                 return View(viewModel);
             }
             await _usuarioService.InsertAsync(usuario);
@@ -76,96 +77,98 @@ namespace CDP.Controllers
         }
 
         // GET: Usuarios/Edit/5
-        //public async Task<IActionResult> Edit(int? id)
-        //{
-        //    if (id == null || _usuarioService.Usuario == null)
-        //    {
-        //        return NotFound();
-        //    }
+        public async Task<IActionResult> Edit(int? id)
+        {
+            if (id == null)
+            {
+                return RedirectToAction(nameof(Error), new { message = "Id usuário é nulo" });
+            }
+            var obj = await _usuarioService.FindByIdAsync(id.Value);
 
-        //    var usuario = await _usuarioService.Usuario.FindAsync(id);
-        //    if (usuario == null)
-        //    {
-        //        return NotFound();
-        //    }
-        //    return View(usuario);
-        //}
+            if (obj == null)
+            {
+                return RedirectToAction(nameof(Error), new { message = "Id do usuário não localizado"});
+            }
+
+            List<Cargo> cargos = await _cargosService.FindAllAsync();
+            UsuarioFormViewModel viewModel = new UsuarioFormViewModel { Usuario = obj, Cargos = cargos };
+
+            return View(viewModel);
+        }
 
         // POST: Usuarios/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-    //    [HttpPost]
-    //    [ValidateAntiForgeryToken]
-    //    public async Task<IActionResult> Edit(int id, [Bind("Id,Nome,Email,Senha,Admin,Ativo,Telefone,Celular,IdCargo")] Usuario usuario)
-    //    {
-    //        if (id != usuario.Id)
-    //        {
-    //            return NotFound();
-    //        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(int id, Usuario usuario)
+        {
+            if (!ModelState.IsValid)
+            {
+                var cargos = await _cargosService.FindAllAsync();
+                var viewModel = new UsuarioFormViewModel { Usuario = usuario, Cargos = cargos };
 
-    //        if (ModelState.IsValid)
-    //        {
-    //            try
-    //            {
-    //                _usuarioService.Update(usuario);
-    //                await _usuarioService.SaveChangesAsync();
-    //            }
-    //            catch (DbUpdateConcurrencyException)
-    //            {
-    //                if (!UsuarioExists(usuario.Id))
-    //                {
-    //                    return NotFound();
-    //                }
-    //                else
-    //                {
-    //                    throw;
-    //                }
-    //            }
-    //            return RedirectToAction(nameof(Index));
-    //        }
-    //        return View(usuario);
-    //    }
+                return View(viewModel);
+            }
 
-    //    // GET: Usuarios/Delete/5
-    //    public async Task<IActionResult> Delete(int? id)
-    //    {
-    //        if (id == null || _usuarioService.Usuario == null)
-    //        {
-    //            return NotFound();
-    //        }
+            if (id != usuario.Id)
+            {
+                return RedirectToAction(nameof(Error), new { message = "Id do usuário não localizado" });
+            }
 
-    //        var usuario = await _usuarioService.Usuario
-    //            .FirstOrDefaultAsync(m => m.Id == id);
-    //        if (usuario == null)
-    //        {
-    //            return NotFound();
-    //        }
+            try
+            {
+                await _usuarioService.UpdateAsync(usuario);
+                return RedirectToAction(nameof(Index));
+            }
+            catch (ApplicationException e)
+            {
+                return RedirectToAction(nameof(Error), new { message = e.Message });
+            }
+        }
 
-    //        return View(usuario);
-    //    }
+        // GET: Usuarios/Delete/5
+        public async Task<IActionResult> Delete(int? id)
+        {
+            if (id == null)
+            {
+                return RedirectToAction(nameof(Error), new { message = "Id usuário é nulo" });
+            }
+            var obj = await _usuarioService.FindByIdAsync(id.Value);
 
-    //    // POST: Usuarios/Delete/5
-    //    [HttpPost, ActionName("Delete")]
-    //    [ValidateAntiForgeryToken]
-    //    public async Task<IActionResult> DeleteConfirmed(int id)
-    //    {
-    //        if (_usuarioService.Usuario == null)
-    //        {
-    //            return Problem("Entity set 'CDPContext.Usuario'  is null.");
-    //        }
-    //        var usuario = await _usuarioService.Usuario.FindAsync(id);
-    //        if (usuario != null)
-    //        {
-    //            _usuarioService.Usuario.Remove(usuario);
-    //        }
-            
-    //        await _usuarioService.SaveChangesAsync();
-    //        return RedirectToAction(nameof(Index));
-    //    }
+            if (obj == null)
+            {
+                return RedirectToAction(nameof(Error), new { message = "Id do usuário não localizado" });
+            }
 
-    //    private bool UsuarioExists(int id)
-    //    {
-    //      return _usuarioService.Usuario.Any(e => e.Id == id);
-    //    }
+            return View(obj);
+        }
+
+        // POST: Usuarios/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            try
+            {
+                await _usuarioService.RemoveAsync(id);
+                return RedirectToAction(nameof(Index));
+            }
+            catch (IntegrityException e)
+            {
+                return RedirectToAction(nameof(Error), new { message = e.Message });
+            }
+        }
+
+        public IActionResult Error(string message)
+        {
+            var viewModel = new ErrorViewModel
+            {
+                Message = message,
+                RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier
+            };
+
+            return View(viewModel);
+        }
     }
 }
