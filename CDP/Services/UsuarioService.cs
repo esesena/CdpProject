@@ -1,6 +1,6 @@
 ﻿using CDP.Data;
 using CDP.Services.Exceptions;
-using CDP_Project.Models;
+using CDP.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace CDP.Services

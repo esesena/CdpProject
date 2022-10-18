@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace CDP_Project.Models
+namespace CDP.Models
 {
     [Table("Safras")]
     public class Safra

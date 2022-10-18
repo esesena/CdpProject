@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using CDP_Project.Models;
+using CDP.Models;
 
 namespace CDP.Data
 {
@@ -14,20 +14,20 @@ namespace CDP.Data
         {
         }
 
-        public DbSet<CDP_Project.Models.Cargo> Cargos { get; set; } = default!;
+        public DbSet<CDP.Models.Cargo> Cargos { get; set; } = default!;
 
-        public DbSet<CDP_Project.Models.Fazenda> Fazenda { get; set; }
+        public DbSet<CDP.Models.Fazenda> Fazenda { get; set; }
 
-        public DbSet<CDP_Project.Models.Usuario> Usuario { get; set; }
+        public DbSet<CDP.Models.Usuario> Usuario { get; set; }
 
-        public DbSet<CDP_Project.Models.Funcionario> Funcionario { get; set; }
+        public DbSet<CDP.Models.Funcionario> Funcionario { get; set; }
 
-        public DbSet<CDP_Project.Models.Plantio> Plantio { get; set; }
+        public DbSet<CDP.Models.Plantio> Plantio { get; set; }
 
-        public DbSet<CDP_Project.Models.Safra> Safra { get; set; }
+        public DbSet<CDP.Models.Safra> Safra { get; set; }
 
-        public DbSet<CDP_Project.Models.Semente> Semente { get; set; }
+        public DbSet<CDP.Models.Semente> Semente { get; set; }
 
-        public DbSet<CDP_Project.Models.Talhoes> Talhoes { get; set; }
+        public DbSet<CDP.Models.Talhoes> Talhoes { get; set; }
     }
 }

@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Xml.Linq;
 
-namespace CDP_Project.Models
+namespace CDP.Models
 {
     [Table("Fazenda")]
     public class Fazenda

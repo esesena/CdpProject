@@ -1,4 +1,4 @@
-﻿using CDP_Project.Models;
+﻿using CDP.Models;
 
 namespace CDP.Models.ViewModels
 {

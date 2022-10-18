@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data;
 
-namespace CDP_Project.Models
+namespace CDP.Models
 {
     [Table("Usuarios")]
     public class Usuario

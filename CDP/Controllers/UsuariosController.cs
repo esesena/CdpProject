@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using CDP.Data;
-using CDP_Project.Models;
+using CDP.Models;
 using CDP.Services;
 using CDP.Models.ViewModels;
 using NuGet.Protocol.Plugins;
