@@ -7,37 +7,41 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using CDP.Data;
 using CDP.Models;
+using CDP.Models.ViewModels;
+using System.Diagnostics;
+using CDP.Services;
+using CDP.Services.Exceptions;
 
 namespace CDP.Controllers
 {
     public class CargosController : Controller
     {
-        private readonly CDPContext _context;
+        private readonly CargoService _cargosService;
 
-        public CargosController(CDPContext context)
+        public CargosController(CargoService cargosService)
         {
-            _context = context;
+            _cargosService = cargosService;
         }
 
         // GET: Cargos
         public async Task<IActionResult> Index()
         {
-              return View(await _context.Cargos.ToListAsync());
+            var list = await _cargosService.FindAllAsync();
+            return View(list);
         }
 
         // GET: Cargos/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.Cargos == null)
+            if (id == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { message = "Id cargo é nulo" });
             }
 
-            var cargos = await _context.Cargos
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var cargos = await _cargosService.FindByIdAsync(id.Value);
             if (cargos == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { message = "Id do cargo não localizado" });
             }
 
             return View(cargos);
@@ -54,12 +58,11 @@ namespace CDP.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("IdCargo,Descricao")] Cargo cargos)
+        public async Task<IActionResult> Create(Cargo cargos)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(cargos);
-                await _context.SaveChangesAsync();
+                await _cargosService.InsertAsync(cargos);
                 return RedirectToAction(nameof(Index));
             }
             return View(cargos);
@@ -68,15 +71,15 @@ namespace CDP.Controllers
         // GET: Cargos/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.Cargos == null)
+            if (id == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { message = "Id cargo é nulo" });
             }
 
-            var cargos = await _context.Cargos.FindAsync(id);
+            var cargos = await _cargosService.FindByIdAsync(id.Value);
             if (cargos == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { message = "Id do cargo não localizado" });
             }
             return View(cargos);
         }
@@ -86,52 +89,44 @@ namespace CDP.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("IdCargo,Descricao")] Cargo cargos)
+        public async Task<IActionResult> Edit(int id, Cargo cargo)
         {
-            if (id != cargos.Id)
+            if (!ModelState.IsValid)
             {
-                return NotFound();
+                return View(cargo);
             }
 
-            if (ModelState.IsValid)
+            if (id != cargo.Id)
             {
-                try
-                {
-                    _context.Update(cargos);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!CargosExists(cargos.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
+                return RedirectToAction(nameof(Error), new { message = "Id do cargo não localizado" });
+            }
+            try
+            {
+                await _cargosService.UpdateAsync(cargo);
                 return RedirectToAction(nameof(Index));
             }
-            return View(cargos);
+            catch (ApplicationException e)
+            {
+                return RedirectToAction(nameof(Error), new { message = e.Message });
+            }
+
         }
 
         // GET: Cargos/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Cargos == null)
+            if (id == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { message = "Id cargo é nulo" });
+            }
+            var obj = await _cargosService.FindByIdAsync(id.Value);
+
+            if (obj == null)
+            {
+                return RedirectToAction(nameof(Error), new { message = "Id do cargo não localizado" });
             }
 
-            var cargos = await _context.Cargos
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (cargos == null)
-            {
-                return NotFound();
-            }
-
-            return View(cargos);
+            return View(obj);
         }
 
         // POST: Cargos/Delete/5
@@ -139,23 +134,26 @@ namespace CDP.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Cargos == null)
+            try
             {
-                return Problem("Entity set 'CDPContext.Cargos'  is null.");
+                await _cargosService.RemoveAsync(id);
+                return RedirectToAction(nameof(Index));
             }
-            var cargos = await _context.Cargos.FindAsync(id);
-            if (cargos != null)
+            catch (IntegrityException e)
             {
-                _context.Cargos.Remove(cargos);
+                return RedirectToAction(nameof(Error), new { message = e.Message });
             }
-            
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
         }
 
-        private bool CargosExists(int id)
+        public IActionResult Error(string message)
         {
-          return _context.Cargos.Any(e => e.Id == id);
+            var viewModel = new ErrorViewModel
+            {
+                Message = message,
+                RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier
+            };
+
+            return View(viewModel);
         }
     }
 }

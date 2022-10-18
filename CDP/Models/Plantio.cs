@@ -1,6 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Xml.Linq;
 
 namespace CDP.Models
 {
@@ -11,50 +10,50 @@ namespace CDP.Models
         public int IdPlantio { get; set; }
 
         [Display(Name = "Data do Plantio")]
-        [Required(ErrorMessage = "Data é obrigatório!")]
+        [Required(ErrorMessage = "{0} é obrigatório!")]
         public DateTime DataPlantio { get; set; }
 
         [Display(Name = "Quantidade de Chuva")]
-        [Required(ErrorMessage = "Quantidade de chuva é obrigatório!")]
+        [Required(ErrorMessage = "Quantidade de {0} é obrigatório!")]
         public int Chuva { get; set; }
 
         [Display(Name = "Tipo de Plantio")]
-        [StringLength(250, ErrorMessage = "Máximo de 250 caracteres!")]
         [Required(ErrorMessage = "Tipo de plantio é obrigatório!")]
+        [StringLength(100, ErrorMessage = "Máximo de {1} caracteres!")]
         public string TipoPlantio { get; set; }
 
         [Display(Name = "Cultura")]
-        [StringLength(250, ErrorMessage = "Máximo de 250 caracteres!")]
         [Required(ErrorMessage = "Cultura é obrigatório!")]
+        [StringLength(100, ErrorMessage = "Máximo de {1} caracteres!")]
         public string Cultura { get; set; }
 
         [Display(Name = "Tempo")]
-        [StringLength(250, ErrorMessage = "Máximo de 250 caracteres!")]
+        [StringLength(250, ErrorMessage = "Máximo de {1} caracteres!")]
         [Required(ErrorMessage = "Tempo é obrigatório!")]
         public string TempoPlantio { get; set; }
 
         [Display(Name = "Umidade do Ar")]
-        [Required(ErrorMessage = "Umidade é obrigatório!")]
+        [Required(ErrorMessage = "{0} é obrigatório!")]
         public int UmidadePlantio { get; set; }
 
         [Display(Name = "Tipo de Semente")]
-        [Required(ErrorMessage = "Tipo de semente é obrigatório!")]
+        [Required(ErrorMessage = "{0} é obrigatório!")]
         public int IdSemente { get; set; }
         public virtual Semente Sementes { get; set; }
 
-        [StringLength(250, ErrorMessage = "Máximo de 250 caracteres!")]
         [Display(Name = "Quantidade de Sementes")]
-        [Required(ErrorMessage = "Quantidade de sementes é obrigatório!")]
+        [StringLength(250, ErrorMessage = "Máximo de {1} caracteres!")]
+        [Required(ErrorMessage = "{0} é obrigatório!")]
         public string QtdSementes { get; set; }
 
-        [StringLength(250, ErrorMessage = "Máximo de 250 caracteres!")]
         [Display(Name = "Distribuição de Sementes")]
-        [Required(ErrorMessage = "Distribuição de sementes é obrigatório!")]
+        [Required(ErrorMessage = "{0} é obrigatório!")]
+        [StringLength(100, ErrorMessage = "Máximo de {1} caracteres!")]
         public string DistSementes { get; set; }
 
-        [StringLength(250, ErrorMessage = "Máximo de 250 caracteres!")]
         [Display(Name = "Tipo de Abubação")]
-        [Required(ErrorMessage = "Tipo de adubação é obrigatório!")]
+        [Required(ErrorMessage = "{0} é obrigatório!")]
+        [StringLength(250, ErrorMessage = "Máximo de {1} caracteres!")]
         public string Adubacao { get; set; }
     }
 }

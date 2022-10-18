@@ -67,7 +67,7 @@ public class Startup
         {
             endpoints.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Usuarios}/{action=Index}/{id?}");
+                pattern: "{controller=Cargos}/{action=Index}/{id?}");
         });
     }
 }

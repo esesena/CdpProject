@@ -1,15 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using CDP.Data;
+﻿using Microsoft.AspNetCore.Mvc;
 using CDP.Models;
 using CDP.Services;
 using CDP.Models.ViewModels;
-using NuGet.Protocol.Plugins;
 using System.Diagnostics;
 using CDP.Services.Exceptions;
 
@@ -38,13 +30,13 @@ namespace CDP.Controllers
         {
             if (id == null)
             {
-                return RedirectToAction(nameof(Error), new { message = "Id not privided" });
+                return RedirectToAction(nameof(Error), new { message = "Id usuário é nulo" });
             }
 
             var usuario = await _usuarioService.FindByIdAsync(id.Value);
             if (usuario == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { message = "Id do usuário não localizado" });
             }
 
             return View(usuario);
