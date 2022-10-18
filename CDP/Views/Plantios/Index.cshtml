@@ -1,0 +1,89 @@
+﻿@model IEnumerable<CDP_Project.Models.Plantio>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.DataPlantio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Chuva)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TipoPlantio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cultura)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TempoPlantio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UmidadePlantio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdSemente)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.QtdSementes)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DistSementes)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Adubacao)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataPlantio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Chuva)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TipoPlantio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cultura)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TempoPlantio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UmidadePlantio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdSemente)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.QtdSementes)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DistSementes)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Adubacao)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.IdPlantio">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.IdPlantio">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.IdPlantio">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -19,5 +19,15 @@ namespace CDP.Data
         public DbSet<CDP_Project.Models.Fazenda> Fazenda { get; set; }
 
         public DbSet<CDP_Project.Models.Usuario> Usuario { get; set; }
+
+        public DbSet<CDP_Project.Models.Funcionario> Funcionario { get; set; }
+
+        public DbSet<CDP_Project.Models.Plantio> Plantio { get; set; }
+
+        public DbSet<CDP_Project.Models.Safra> Safra { get; set; }
+
+        public DbSet<CDP_Project.Models.Semente> Semente { get; set; }
+
+        public DbSet<CDP_Project.Models.Talhoes> Talhoes { get; set; }
     }
 }
