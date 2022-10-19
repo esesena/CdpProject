@@ -4,7 +4,7 @@
     ViewData["Title"] = "Index";
 }
 
-<h1><i class="bi bi-grid-3x3-gap-fill me-2">Index</h1>
+<h1>Index</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -25,10 +25,7 @@
                 @Html.DisplayNameFor(model => model.TipoSolo)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CultivarAnterior)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IdFazenda)
+                @Html.DisplayNameFor(model => model.Fazenda)
             </th>
             <th></th>
         </tr>
@@ -49,15 +46,12 @@
                 @Html.DisplayFor(modelItem => item.TipoSolo)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.CultivarAnterior)
+                @Html.DisplayFor(modelItem => item.Fazenda.Localizacao)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.IdFazenda)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.IdTalhao">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.IdTalhao">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.IdTalhao">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
             </td>
         </tr>
 }

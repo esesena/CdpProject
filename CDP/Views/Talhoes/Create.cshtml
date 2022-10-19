@@ -33,14 +33,8 @@
                 <span asp-validation-for="TipoSolo" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="CultivarAnterior" class="control-label"></label>
-                <input asp-for="CultivarAnterior" class="form-control" />
-                <span asp-validation-for="CultivarAnterior" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="IdFazenda" class="control-label"></label>
-                <input asp-for="IdFazenda" class="form-control" />
-                <span asp-validation-for="IdFazenda" class="text-danger"></span>
+                <label asp-for="FazendaId" class="control-label"></label>
+                <select asp-for="FazendaId" class ="form-control" asp-items="ViewBag.FazendaId"></select>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />

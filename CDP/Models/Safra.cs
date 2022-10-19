@@ -8,11 +8,11 @@ namespace CDP.Models
     public class Safra
     {
         [Key]
-        public int IdSafra { get; set; }
+        public int Id { get; set; }
 
         [Display(Name = "Nome da Safra")]
-        [Required(ErrorMessage = "Nome é obrigatório!")]
-        [StringLength(10, ErrorMessage = "Máximo de 10 caracteres!")]
+        [Required(ErrorMessage = "{0} é obrigatório!")]
+        [StringLength(10, ErrorMessage = "Máximo de {1} caracteres!")]
         public string Nome { get; set; }
 
         [Display(Name = "Funcionarios")]
@@ -20,8 +20,8 @@ namespace CDP.Models
         public ICollection<Funcionario> Funcionarios { get; set; }
 
         [Display(Name = "Funcionarios")]
-        [Required(ErrorMessage = "Funcionário é obrigatório!")]
-        public int IdTalhao { get; set; }
+        [Required(ErrorMessage = "{0} é obrigatório!")]
+        public int TalhaoId { get; set; }
 
         public ICollection<Talhoes> Talhoes { get; set; }
     }

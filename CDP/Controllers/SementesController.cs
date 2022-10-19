@@ -34,7 +34,7 @@ namespace CDP.Controllers
             }
 
             var semente = await _context.Semente
-                .FirstOrDefaultAsync(m => m.IdSemente == id);
+                .FirstOrDefaultAsync(m => m.Id == id);
             if (semente == null)
             {
                 return NotFound();
@@ -88,7 +88,7 @@ namespace CDP.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("IdSemente,Descricao")] Semente semente)
         {
-            if (id != semente.IdSemente)
+            if (id != semente.Id)
             {
                 return NotFound();
             }
@@ -102,7 +102,7 @@ namespace CDP.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!SementeExists(semente.IdSemente))
+                    if (!SementeExists(semente.Id))
                     {
                         return NotFound();
                     }
@@ -125,7 +125,7 @@ namespace CDP.Controllers
             }
 
             var semente = await _context.Semente
-                .FirstOrDefaultAsync(m => m.IdSemente == id);
+                .FirstOrDefaultAsync(m => m.Id == id);
             if (semente == null)
             {
                 return NotFound();
@@ -155,7 +155,7 @@ namespace CDP.Controllers
 
         private bool SementeExists(int id)
         {
-          return _context.Semente.Any(e => e.IdSemente == id);
+          return _context.Semente.Any(e => e.Id == id);
         }
     }
 }

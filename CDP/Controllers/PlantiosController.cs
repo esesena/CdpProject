@@ -34,7 +34,7 @@ namespace CDP.Controllers
             }
 
             var plantio = await _context.Plantio
-                .FirstOrDefaultAsync(m => m.IdPlantio == id);
+                .FirstOrDefaultAsync(m => m.Id == id);
             if (plantio == null)
             {
                 return NotFound();
@@ -88,7 +88,7 @@ namespace CDP.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("IdPlantio,DataPlantio,Chuva,TipoPlantio,Cultura,TempoPlantio,UmidadePlantio,IdSemente,QtdSementes,DistSementes,Adubacao")] Plantio plantio)
         {
-            if (id != plantio.IdPlantio)
+            if (id != plantio.Id)
             {
                 return NotFound();
             }
@@ -102,7 +102,7 @@ namespace CDP.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!PlantioExists(plantio.IdPlantio))
+                    if (!PlantioExists(plantio.Id))
                     {
                         return NotFound();
                     }
@@ -125,7 +125,7 @@ namespace CDP.Controllers
             }
 
             var plantio = await _context.Plantio
-                .FirstOrDefaultAsync(m => m.IdPlantio == id);
+                .FirstOrDefaultAsync(m => m.Id == id);
             if (plantio == null)
             {
                 return NotFound();
@@ -155,7 +155,7 @@ namespace CDP.Controllers
 
         private bool PlantioExists(int id)
         {
-          return _context.Plantio.Any(e => e.IdPlantio == id);
+          return _context.Plantio.Any(e => e.Id == id);
         }
     }
 }

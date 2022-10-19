@@ -22,7 +22,8 @@ namespace CDP.Controllers
         // GET: Talhoes
         public async Task<IActionResult> Index()
         {
-              return View(await _context.Talhoes.ToListAsync());
+            var cDPContext = _context.Talhoes.Include(t => t.Fazenda);
+            return View(await cDPContext.ToListAsync());
         }
 
         // GET: Talhoes/Details/5
@@ -34,7 +35,8 @@ namespace CDP.Controllers
             }
 
             var talhoes = await _context.Talhoes
-                .FirstOrDefaultAsync(m => m.IdTalhao == id);
+                .Include(t => t.Fazenda)
+                .FirstOrDefaultAsync(m => m.Id == id);
             if (talhoes == null)
             {
                 return NotFound();
@@ -46,6 +48,7 @@ namespace CDP.Controllers
         // GET: Talhoes/Create
         public IActionResult Create()
         {
+            ViewData["FazendaId"] = new SelectList(_context.Fazenda, "IdFazenda", "Localizacao");
             return View();
         }
 
@@ -54,7 +57,7 @@ namespace CDP.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("IdTalhao,Nome,Localizacao,Area,TipoSolo,CultivarAnterior,IdFazenda")] Talhoes talhoes)
+        public async Task<IActionResult> Create([Bind("Id,Nome,Localizacao,Area,TipoSolo,FazendaId")] Talhoes talhoes)
         {
             if (ModelState.IsValid)
             {
@@ -62,6 +65,7 @@ namespace CDP.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["FazendaId"] = new SelectList(_context.Fazenda, "IdFazenda", "Localizacao", talhoes.FazendaId);
             return View(talhoes);
         }
 
@@ -78,6 +82,7 @@ namespace CDP.Controllers
             {
                 return NotFound();
             }
+            ViewData["FazendaId"] = new SelectList(_context.Fazenda, "IdFazenda", "Localizacao", talhoes.FazendaId);
             return View(talhoes);
         }
 
@@ -86,9 +91,9 @@ namespace CDP.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("IdTalhao,Nome,Localizacao,Area,TipoSolo,CultivarAnterior,IdFazenda")] Talhoes talhoes)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Nome,Localizacao,Area,TipoSolo,FazendaId")] Talhoes talhoes)
         {
-            if (id != talhoes.IdTalhao)
+            if (id != talhoes.Id)
             {
                 return NotFound();
             }
@@ -102,7 +107,7 @@ namespace CDP.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!TalhoesExists(talhoes.IdTalhao))
+                    if (!TalhoesExists(talhoes.Id))
                     {
                         return NotFound();
                     }
@@ -113,6 +118,7 @@ namespace CDP.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["FazendaId"] = new SelectList(_context.Fazenda, "IdFazenda", "Localizacao", talhoes.FazendaId);
             return View(talhoes);
         }
 
@@ -125,7 +131,8 @@ namespace CDP.Controllers
             }
 
             var talhoes = await _context.Talhoes
-                .FirstOrDefaultAsync(m => m.IdTalhao == id);
+                .Include(t => t.Fazenda)
+                .FirstOrDefaultAsync(m => m.Id == id);
             if (talhoes == null)
             {
                 return NotFound();
@@ -155,7 +162,7 @@ namespace CDP.Controllers
 
         private bool TalhoesExists(int id)
         {
-          return _context.Talhoes.Any(e => e.IdTalhao == id);
+          return _context.Talhoes.Any(e => e.Id == id);
         }
     }
 }

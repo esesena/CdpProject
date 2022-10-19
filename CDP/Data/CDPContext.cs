@@ -29,5 +29,6 @@ namespace CDP.Data
         public DbSet<CDP.Models.Semente> Semente { get; set; }
 
         public DbSet<CDP.Models.Talhoes> Talhoes { get; set; }
+
     }
 }

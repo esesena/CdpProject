@@ -35,20 +35,14 @@
             @Html.DisplayFor(model => model.TipoSolo)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CultivarAnterior)
+            @Html.DisplayNameFor(model => model.Fazenda)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CultivarAnterior)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IdFazenda)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IdFazenda)
+            @Html.DisplayFor(model => model.Fazenda.Localizacao)
         </dd>
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model?.IdTalhao">Edit</a> |
+    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
     <a asp-action="Index">Back to List</a>
 </div>

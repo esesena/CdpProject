@@ -7,21 +7,35 @@ namespace CDP.Models
     [Table("Fazenda")]
     public class Fazenda
     {
+        public Fazenda()
+        {
+        }
+
         [Key]
         public int IdFazenda { get; set; }
 
         [Display(Name = "Nome")]
-        [StringLength(250, ErrorMessage = "Máximo de 250 caracteres!")]
-        [Required(ErrorMessage = "Nome é obrigatório!")]
+        [StringLength(100, MinimumLength = 3, ErrorMessage = "{0} deve ter entre {2} e {1} caracteres!")]
+        [Required(ErrorMessage = "{0} é obrigatório!")]
         public string Nome { get; set; }
 
         [Display(Name = "Localização")]
-        [StringLength(250, ErrorMessage = "Máximo de 250 caracteres!")]
-        [Required(ErrorMessage = "Nome é obrigatório!")]
+        [StringLength(100, MinimumLength = 3, ErrorMessage = "{0} deve ter entre {2} e {1} caracteres!")]
+        [Required(ErrorMessage = "{0} é obrigatório!")]
         public string Localizacao { get; set; }
 
         [Display(Name = "Área")]
-        [Required(ErrorMessage = "Área é obrigatório!")]
-        public int Area { get; set; }
+        [Required(ErrorMessage = "{0} é obrigatório!")]
+        public double Area { get; set; }
+
+        public ICollection<Talhoes> Talhoes { get; set; } = new List<Talhoes>();
+
+        public Fazenda(int idFazenda, string nome, string localizacao, double area)
+        {
+            IdFazenda = idFazenda;
+            Nome = nome;
+            Localizacao = localizacao;
+            Area = area;
+        }
     }
 }

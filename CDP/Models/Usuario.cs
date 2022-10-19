@@ -11,17 +11,18 @@ namespace CDP.Models
         public int Id { get; set; }
 
         [Required(ErrorMessage = "{0} é obrigatório!")]
-        [StringLength(250, ErrorMessage = "Máximo de 250 caracteres!")]
+        [StringLength(250, MinimumLength = 3, ErrorMessage = "{0} deve ter entre {2} e {1} caracteres!")]
         [Display(Name = "Nome")]
         public string Nome { get; set; }
 
         [Required(ErrorMessage = "{0} é obrigatório!")]
-        [StringLength(250, ErrorMessage = "Máximo de 250 caracteres!")]
+        [StringLength(250, MinimumLength = 3, ErrorMessage = "{0} deve ter entre {2} e {1} caracteres!")]
+        [DataType(DataType.EmailAddress)]
         [Display(Name = "Email")]
         public string Email { get; set; }
 
         [Required(ErrorMessage = "{0} é obrigatório!")]
-        [StringLength(250, ErrorMessage = "Máximo de 250 caracteres!")]
+        [StringLength(30, MinimumLength = 4, ErrorMessage = "{0} deve ter entre {2} e {1} caracteres!")]
         [Display(Name = "Senha")]
         [DataType(DataType.Password)]
         public string Senha { get; set; }
@@ -34,11 +35,11 @@ namespace CDP.Models
         [Display(Name = "Ativo")]
         public bool Ativo { get; set; }
 
-        [StringLength(20, ErrorMessage = "Máximo de 20 caracteres!")]
+        [DataType(DataType.PhoneNumber)]
         [Display(Name = "Telefone")]
         public string Telefone { get; set; }
 
-        [StringLength(20, ErrorMessage = "Máximo de 20 caracteres!")]
+        [DataType(DataType.PhoneNumber)]
         [Display(Name = "Celular")]
         public string Celular { get; set; }
 

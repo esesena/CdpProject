@@ -6,17 +6,21 @@ namespace CDP.Models
     [Table("Funcionarios")]
     public class Funcionario
     {
+        public Funcionario()
+        {
+        }
+
         [Key]
         public int IdFuncionario { get; set; }
 
         [Display(Name = "Nome")]
-        [StringLength(250, ErrorMessage = "Máximo de 250 caracteres!")]
+        [StringLength(100, MinimumLength = 3, ErrorMessage = "{0} deve ter entre {2} e {1} caracteres!")]
         [Required(ErrorMessage = "Nome do funcionário é obrigatório!")]
         public string Nome { get; set; }
 
         [Display(Name = "CPF")]
-        [StringLength(15, ErrorMessage = "Máximo de 15 caracteres!")]
-        [Required(ErrorMessage = "CPF é obrigatório!")]
+        [StringLength(15, ErrorMessage = "{0} deve ter {1} caracteres!")]
+        [Required(ErrorMessage = "{0} é obrigatório!")]
         public string Cpf { get; set; }
 
         [Display(Name = "Cargo")]
@@ -24,36 +28,51 @@ namespace CDP.Models
         public virtual Cargo Cargo { get; set; }
 
         [Display(Name = "Carga Horária")]
-        [Required(ErrorMessage = "Carga horária é obrigatório!")]
+        [Required(ErrorMessage = "{0} é obrigatório!")]
         public int CargaHoraria { get; set; }
 
         [Display(Name = "Data de Nascimento")]
-        [Required(ErrorMessage = "Data de nascimento é obrigatório!")]
+        [Required(ErrorMessage = "{0} é obrigatório!")]
         public DataType DataNascimento { get; set; }
 
         [Display(Name = "CEP")]
-        [StringLength(10, ErrorMessage = "Máximo de 10 caracteres!")]
-        [Required(ErrorMessage = "CEP é obrigatório!")]
+        [StringLength(10, ErrorMessage = "{0} deve ter {1} caracteres!")]
+        [Required(ErrorMessage = "{0} é obrigatório!")]
         public string Cep { get; set; }
 
         [Display(Name = "Logradouro")]
-        [StringLength(250, ErrorMessage = "Máximo de 250 caracteres!")]
-        [Required(ErrorMessage = "Logradouro é obrigatório!")]
+        [StringLength(100, MinimumLength = 3, ErrorMessage = "{0} deve ter entre {2} e {1} caracteres!")]
+        [Required(ErrorMessage = "{0} é obrigatório!")]
         public string Logradouro { get; set; }
 
         [Display(Name = "Bairro")]
-        [StringLength(250, ErrorMessage = "Máximo de 250 caracteres!")]
-        [Required(ErrorMessage = "Bairro é obrigatório!")]
+        [StringLength(100, MinimumLength = 3, ErrorMessage = "{0} deve ter entre {2} e {1} caracteres!")]
+        [Required(ErrorMessage = "{0} é obrigatório!")]
         public string Bairro { get; set; }
 
         [Display(Name = "Cidade")]
-        [StringLength(250, ErrorMessage = "Máximo de 250 caracteres!")]
-        [Required(ErrorMessage = "Cidade é obrigatório!")]
+        [StringLength(100, MinimumLength = 3, ErrorMessage = "{0} deve ter entre {2} e {1} caracteres!")]
+        [Required(ErrorMessage = "{0} é obrigatório!")]
         public string Cidade { get; set; }
 
         [Display(Name = "Estado")]
-        [StringLength(100, ErrorMessage = "Máximo de 100 caracteres!")]
-        [Required(ErrorMessage = "Estado é obrigatório!")]
+        [StringLength(100, MinimumLength = 3, ErrorMessage = "{0} deve ter entre {2} e {1} caracteres!")]
+        [Required(ErrorMessage = "{0} é obrigatório!")]
         public string Estado { get; set; }
+
+        public Funcionario(int idFuncionario, string nome, string cpf, Cargo cargo, int cargaHoraria, DataType dataNascimento, string cep, string logradouro, string bairro, string cidade, string estado)
+        {
+            IdFuncionario = idFuncionario;
+            Nome = nome;
+            Cpf = cpf;
+            Cargo = cargo;
+            CargaHoraria = cargaHoraria;
+            DataNascimento = dataNascimento;
+            Cep = cep;
+            Logradouro = logradouro;
+            Bairro = bairro;
+            Cidade = cidade;
+            Estado = estado;
+        }
     }
 }

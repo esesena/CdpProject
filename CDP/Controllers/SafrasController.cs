@@ -34,7 +34,7 @@ namespace CDP.Controllers
             }
 
             var safra = await _context.Safra
-                .FirstOrDefaultAsync(m => m.IdSafra == id);
+                .FirstOrDefaultAsync(m => m.Id == id);
             if (safra == null)
             {
                 return NotFound();
@@ -88,7 +88,7 @@ namespace CDP.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("IdSafra,Nome,IdTalhao")] Safra safra)
         {
-            if (id != safra.IdSafra)
+            if (id != safra.Id)
             {
                 return NotFound();
             }
@@ -102,7 +102,7 @@ namespace CDP.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!SafraExists(safra.IdSafra))
+                    if (!SafraExists(safra.Id))
                     {
                         return NotFound();
                     }
@@ -125,7 +125,7 @@ namespace CDP.Controllers
             }
 
             var safra = await _context.Safra
-                .FirstOrDefaultAsync(m => m.IdSafra == id);
+                .FirstOrDefaultAsync(m => m.Id == id);
             if (safra == null)
             {
                 return NotFound();
@@ -155,7 +155,7 @@ namespace CDP.Controllers
 
         private bool SafraExists(int id)
         {
-          return _context.Safra.Any(e => e.IdSafra == id);
+          return _context.Safra.Any(e => e.Id == id);
         }
     }
 }
