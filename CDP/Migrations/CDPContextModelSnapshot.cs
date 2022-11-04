@@ -37,7 +37,7 @@ namespace CDP.Migrations
 
             modelBuilder.Entity("CDP.Models.Fazenda", b =>
                 {
-                    b.Property<int>("IdFazenda")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
@@ -54,14 +54,14 @@ namespace CDP.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("varchar(100)");
 
-                    b.HasKey("IdFazenda");
+                    b.HasKey("Id");
 
                     b.ToTable("Fazenda");
                 });
 
             modelBuilder.Entity("CDP.Models.Funcionario", b =>
                 {
-                    b.Property<int>("IdFuncionario")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
@@ -115,7 +115,7 @@ namespace CDP.Migrations
                     b.Property<int?>("SafraId")
                         .HasColumnType("int");
 
-                    b.HasKey("IdFuncionario");
+                    b.HasKey("Id");
 
                     b.HasIndex("CargoId");
 

@@ -8,197 +8,197 @@ build_property.PlatformNeutralAssembly =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = CDP
 build_property.RootNamespace = CDP
-build_property.ProjectDir = C:\IoT\CDP\CDP\
+build_property.ProjectDir = C:\db\CdpProject\CDP\
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\IoT\CDP\CDP
+build_property.MSBuildProjectDirectory = C:\db\CdpProject\CDP
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/IoT/CDP/CDP/Views/Cargos/Create.cshtml]
+[C:/db/CdpProject/CDP/Views/Cargos/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FyZ29zXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/IoT/CDP/CDP/Views/Cargos/Delete.cshtml]
+[C:/db/CdpProject/CDP/Views/Cargos/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FyZ29zXERlbGV0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/IoT/CDP/CDP/Views/Cargos/Details.cshtml]
+[C:/db/CdpProject/CDP/Views/Cargos/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FyZ29zXERldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/IoT/CDP/CDP/Views/Cargos/Edit.cshtml]
+[C:/db/CdpProject/CDP/Views/Cargos/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FyZ29zXEVkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/IoT/CDP/CDP/Views/Cargos/Index.cshtml]
+[C:/db/CdpProject/CDP/Views/Cargos/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FyZ29zXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/IoT/CDP/CDP/Views/Fazendas/Create.cshtml]
+[C:/db/CdpProject/CDP/Views/Fazendas/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmF6ZW5kYXNcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/IoT/CDP/CDP/Views/Fazendas/Delete.cshtml]
+[C:/db/CdpProject/CDP/Views/Fazendas/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmF6ZW5kYXNcRGVsZXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/IoT/CDP/CDP/Views/Fazendas/Details.cshtml]
+[C:/db/CdpProject/CDP/Views/Fazendas/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmF6ZW5kYXNcRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/IoT/CDP/CDP/Views/Fazendas/Edit.cshtml]
+[C:/db/CdpProject/CDP/Views/Fazendas/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmF6ZW5kYXNcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/IoT/CDP/CDP/Views/Fazendas/Index.cshtml]
+[C:/db/CdpProject/CDP/Views/Fazendas/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmF6ZW5kYXNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/IoT/CDP/CDP/Views/Funcionarios/Create.cshtml]
+[C:/db/CdpProject/CDP/Views/Funcionarios/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRnVuY2lvbmFyaW9zXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/IoT/CDP/CDP/Views/Funcionarios/Delete.cshtml]
+[C:/db/CdpProject/CDP/Views/Funcionarios/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRnVuY2lvbmFyaW9zXERlbGV0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/IoT/CDP/CDP/Views/Funcionarios/Details.cshtml]
+[C:/db/CdpProject/CDP/Views/Funcionarios/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRnVuY2lvbmFyaW9zXERldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/IoT/CDP/CDP/Views/Funcionarios/Edit.cshtml]
+[C:/db/CdpProject/CDP/Views/Funcionarios/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRnVuY2lvbmFyaW9zXEVkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/IoT/CDP/CDP/Views/Funcionarios/Index.cshtml]
+[C:/db/CdpProject/CDP/Views/Funcionarios/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRnVuY2lvbmFyaW9zXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/IoT/CDP/CDP/Views/Home/Index.cshtml]
+[C:/db/CdpProject/CDP/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/IoT/CDP/CDP/Views/Home/Privacy.cshtml]
+[C:/db/CdpProject/CDP/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/IoT/CDP/CDP/Views/Plantios/Create.cshtml]
+[C:/db/CdpProject/CDP/Views/Plantios/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGxhbnRpb3NcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/IoT/CDP/CDP/Views/Plantios/Delete.cshtml]
+[C:/db/CdpProject/CDP/Views/Plantios/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGxhbnRpb3NcRGVsZXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/IoT/CDP/CDP/Views/Plantios/Details.cshtml]
+[C:/db/CdpProject/CDP/Views/Plantios/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGxhbnRpb3NcRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/IoT/CDP/CDP/Views/Plantios/Edit.cshtml]
+[C:/db/CdpProject/CDP/Views/Plantios/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGxhbnRpb3NcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/IoT/CDP/CDP/Views/Plantios/Index.cshtml]
+[C:/db/CdpProject/CDP/Views/Plantios/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGxhbnRpb3NcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/IoT/CDP/CDP/Views/Safras/Create.cshtml]
+[C:/db/CdpProject/CDP/Views/Safras/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2FmcmFzXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/IoT/CDP/CDP/Views/Safras/Delete.cshtml]
+[C:/db/CdpProject/CDP/Views/Safras/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2FmcmFzXERlbGV0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/IoT/CDP/CDP/Views/Safras/Details.cshtml]
+[C:/db/CdpProject/CDP/Views/Safras/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2FmcmFzXERldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/IoT/CDP/CDP/Views/Safras/Edit.cshtml]
+[C:/db/CdpProject/CDP/Views/Safras/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2FmcmFzXEVkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/IoT/CDP/CDP/Views/Safras/Index.cshtml]
+[C:/db/CdpProject/CDP/Views/Safras/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2FmcmFzXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/IoT/CDP/CDP/Views/Sementes/Create.cshtml]
+[C:/db/CdpProject/CDP/Views/Sementes/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2VtZW50ZXNcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/IoT/CDP/CDP/Views/Sementes/Delete.cshtml]
+[C:/db/CdpProject/CDP/Views/Sementes/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2VtZW50ZXNcRGVsZXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/IoT/CDP/CDP/Views/Sementes/Details.cshtml]
+[C:/db/CdpProject/CDP/Views/Sementes/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2VtZW50ZXNcRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/IoT/CDP/CDP/Views/Sementes/Edit.cshtml]
+[C:/db/CdpProject/CDP/Views/Sementes/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2VtZW50ZXNcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/IoT/CDP/CDP/Views/Sementes/Index.cshtml]
+[C:/db/CdpProject/CDP/Views/Sementes/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2VtZW50ZXNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/IoT/CDP/CDP/Views/Shared/Error.cshtml]
+[C:/db/CdpProject/CDP/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/IoT/CDP/CDP/Views/Shared/_ValidationScriptsPartial.cshtml]
+[C:/db/CdpProject/CDP/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/IoT/CDP/CDP/Views/Talhoes/Create.cshtml]
+[C:/db/CdpProject/CDP/Views/Talhoes/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGFsaG9lc1xDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/IoT/CDP/CDP/Views/Talhoes/Delete.cshtml]
+[C:/db/CdpProject/CDP/Views/Talhoes/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGFsaG9lc1xEZWxldGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/IoT/CDP/CDP/Views/Talhoes/Details.cshtml]
+[C:/db/CdpProject/CDP/Views/Talhoes/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGFsaG9lc1xEZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/IoT/CDP/CDP/Views/Talhoes/Edit.cshtml]
+[C:/db/CdpProject/CDP/Views/Talhoes/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGFsaG9lc1xFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/IoT/CDP/CDP/Views/Talhoes/Index.cshtml]
+[C:/db/CdpProject/CDP/Views/Talhoes/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGFsaG9lc1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/IoT/CDP/CDP/Views/Usuarios/Create.cshtml]
+[C:/db/CdpProject/CDP/Views/Usuarios/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb3NcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/IoT/CDP/CDP/Views/Usuarios/Delete.cshtml]
+[C:/db/CdpProject/CDP/Views/Usuarios/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb3NcRGVsZXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/IoT/CDP/CDP/Views/Usuarios/Details.cshtml]
+[C:/db/CdpProject/CDP/Views/Usuarios/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb3NcRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/IoT/CDP/CDP/Views/Usuarios/Edit.cshtml]
+[C:/db/CdpProject/CDP/Views/Usuarios/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb3NcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/IoT/CDP/CDP/Views/Usuarios/Index.cshtml]
+[C:/db/CdpProject/CDP/Views/Usuarios/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb3NcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/IoT/CDP/CDP/Views/_ViewImports.cshtml]
+[C:/db/CdpProject/CDP/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/IoT/CDP/CDP/Views/_ViewStart.cshtml]
+[C:/db/CdpProject/CDP/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/IoT/CDP/CDP/Views/Shared/_Layout.cshtml]
+[C:/db/CdpProject/CDP/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-snwhdyx6gv

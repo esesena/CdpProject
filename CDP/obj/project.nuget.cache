@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "D9i7teaKL1c4Ti+27/CicXmEKNDROfe1k0nSL0rlDdspq7xNguHwdL/OVbZYuhiSo+bWD50VsYJn9ewbsT2sdw==",
+  "dgSpecHash": "EBQksD8I9cx930c0BamYfefQkFDUykhy3SBlzSZpUenZBnBpvi8Tf43nNrk5giwzwBBOKsFYEOuT+isk06SWOw==",
   "success": true,
-  "projectFilePath": "C:\\IoT\\CDP\\CDP\\CDP.csproj",
+  "projectFilePath": "C:\\db\\CdpProject\\CDP\\CDP.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Scarabeli-PC\\.nuget\\packages\\bouncycastle.netcore\\1.8.5\\bouncycastle.netcore.1.8.5.nupkg.sha512",
     "C:\\Users\\Scarabeli-PC\\.nuget\\packages\\google.protobuf\\3.14.0\\google.protobuf.3.14.0.nupkg.sha512",

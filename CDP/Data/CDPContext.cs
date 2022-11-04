@@ -16,8 +16,6 @@ namespace CDP.Data
 
         public DbSet<CDP.Models.Cargo> Cargos { get; set; } = default!;
 
-        public DbSet<CDP.Models.Fazenda> Fazenda { get; set; }
-
         public DbSet<CDP.Models.Usuario> Usuario { get; set; }
 
         public DbSet<CDP.Models.Funcionario> Funcionario { get; set; }
@@ -27,6 +25,8 @@ namespace CDP.Data
         public DbSet<CDP.Models.Safra> Safra { get; set; }
 
         public DbSet<CDP.Models.Semente> Semente { get; set; }
+
+        public DbSet<CDP.Models.Fazenda> Fazenda { get; set; }
 
         public DbSet<CDP.Models.Talhoes> Talhoes { get; set; }
 

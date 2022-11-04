@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\IoT\\CDP\\CDP\\CDP.csproj": {}
+    "C:\\db\\CdpProject\\CDP\\CDP.csproj": {}
   },
   "projects": {
-    "C:\\IoT\\CDP\\CDP\\CDP.csproj": {
+    "C:\\db\\CdpProject\\CDP\\CDP.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\IoT\\CDP\\CDP\\CDP.csproj",
+        "projectUniqueName": "C:\\db\\CdpProject\\CDP\\CDP.csproj",
         "projectName": "CDP",
-        "projectPath": "C:\\IoT\\CDP\\CDP\\CDP.csproj",
+        "projectPath": "C:\\db\\CdpProject\\CDP\\CDP.csproj",
         "packagesPath": "C:\\Users\\Scarabeli-PC\\.nuget\\packages\\",
-        "outputPath": "C:\\IoT\\CDP\\CDP\\obj\\",
+        "outputPath": "C:\\db\\CdpProject\\CDP\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
           "C:\\Users\\Scarabeli-PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

@@ -1,13 +1,18 @@
 ﻿@model CDP.Models.Talhoes
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Editar";
 }
 
-<h1>Edit</h1>
+<div class="container-fluid px-4">
+    <div class="row border-bottom mt-2 md-4">
+        <div class="col-lg-10 col-sm-6">
+            <h2 class="" style="font-weight:bolder">
+                <i class="bi bi-columns-gap m-1"></i>@ViewData["Title"]
+            </h2>
+        </div>
+    </div>
 
-<h4>Talhoes</h4>
-<hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Edit">

@@ -11,7 +11,7 @@ namespace CDP.Models
         }
 
         [Key]
-        public int IdFuncionario { get; set; }
+        public int Id { get; set; }
 
         [Display(Name = "Nome")]
         [StringLength(100, MinimumLength = 3, ErrorMessage = "{0} deve ter entre {2} e {1} caracteres!")]
@@ -62,7 +62,7 @@ namespace CDP.Models
 
         public Funcionario(int idFuncionario, string nome, string cpf, Cargo cargo, int cargaHoraria, DataType dataNascimento, string cep, string logradouro, string bairro, string cidade, string estado)
         {
-            IdFuncionario = idFuncionario;
+            Id = idFuncionario;
             Nome = nome;
             Cpf = cpf;
             Cargo = cargo;

@@ -12,7 +12,7 @@ namespace CDP.Models
         }
 
         [Key]
-        public int IdFazenda { get; set; }
+        public int Id { get; set; }
 
         [Display(Name = "Nome")]
         [StringLength(100, MinimumLength = 3, ErrorMessage = "{0} deve ter entre {2} e {1} caracteres!")]
@@ -32,10 +32,24 @@ namespace CDP.Models
 
         public Fazenda(int idFazenda, string nome, string localizacao, double area)
         {
-            IdFazenda = idFazenda;
+            Id = idFazenda;
             Nome = nome;
             Localizacao = localizacao;
             Area = area;
+        }
+
+        public void AddTalhao(Talhoes tl)
+        {
+            Talhoes.Add(tl);
+        }
+        public void RemoveSales(Talhoes tl)
+        {
+            Talhoes.Remove(tl);
+        }
+
+        public double AreaTotal(int area)
+        {
+            return Talhoes.Sum(ar => ar.Area);
         }
     }
 }

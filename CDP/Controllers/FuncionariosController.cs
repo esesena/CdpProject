@@ -34,7 +34,7 @@ namespace CDP.Controllers
             }
 
             var funcionario = await _context.Funcionario
-                .FirstOrDefaultAsync(m => m.IdFuncionario == id);
+                .FirstOrDefaultAsync(m => m.Id == id);
             if (funcionario == null)
             {
                 return NotFound();
@@ -88,7 +88,7 @@ namespace CDP.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("IdFuncionario,Nome,Cpf,IdCargo,CargaHoraria,DataNascimento,Cep,Logradouro,Bairro,Cidade,Estado")] Funcionario funcionario)
         {
-            if (id != funcionario.IdFuncionario)
+            if (id != funcionario.Id)
             {
                 return NotFound();
             }
@@ -102,7 +102,7 @@ namespace CDP.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!FuncionarioExists(funcionario.IdFuncionario))
+                    if (!FuncionarioExists(funcionario.Id))
                     {
                         return NotFound();
                     }
@@ -125,7 +125,7 @@ namespace CDP.Controllers
             }
 
             var funcionario = await _context.Funcionario
-                .FirstOrDefaultAsync(m => m.IdFuncionario == id);
+                .FirstOrDefaultAsync(m => m.Id == id);
             if (funcionario == null)
             {
                 return NotFound();
@@ -155,7 +155,7 @@ namespace CDP.Controllers
 
         private bool FuncionarioExists(int id)
         {
-          return _context.Funcionario.Any(e => e.IdFuncionario == id);
+          return _context.Funcionario.Any(e => e.Id == id);
         }
     }
 }

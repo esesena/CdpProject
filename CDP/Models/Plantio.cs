@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using CDP.Models.Enums;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CDP.Models
@@ -29,7 +30,7 @@ namespace CDP.Models
         [Display(Name = "Cultura")]
         [Required(ErrorMessage = "{0} é obrigatório!")]
         [StringLength(100, MinimumLength = 3, ErrorMessage = "{0} deve ter entre {2} e {1} caracteres!")]
-        public string Cultura { get; set; }
+        public Cultura Cultura { get; set; }
 
         [Display(Name = "Tempo durante o plantio")]
         [StringLength(100, MinimumLength = 3, ErrorMessage = "{0} deve ter entre {2} e {1} caracteres!")]
@@ -59,7 +60,13 @@ namespace CDP.Models
         [StringLength(100, MinimumLength = 3, ErrorMessage = "{0} deve ter entre {2} e {1} caracteres!")]
         public string Adubacao { get; set; }
 
-        public Plantio(int id, DateTime dataPlantio, double chuva, string tipoPlantio, string cultura, string tempoPlantio, double umidadePlantio, Semente sementes, string qtdSementes, double distSementes, string adubacao)
+        [Display(Name = "Safra")]
+        [Required(ErrorMessage = "{0} é obrigatório!")]
+        [StringLength(100, MinimumLength = 3, ErrorMessage = "{0} deve ter entre {2} e {1} caracteres!")]
+        public int SafraId { get; set; }
+        public Safra Safra { get; set; }
+
+        public Plantio(int id, DateTime dataPlantio, double chuva, string tipoPlantio, Cultura cultura, string tempoPlantio, double umidadePlantio, Semente sementes, string qtdSementes, double distSementes, string adubacao, Safra safra)
         {
             Id = id;
             DataPlantio = dataPlantio;
@@ -72,6 +79,7 @@ namespace CDP.Models
             QtdSementes = qtdSementes;
             DistSementes = distSementes;
             Adubacao = adubacao;
+            Safra = safra;
         }
     }
 }

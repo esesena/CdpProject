@@ -7,46 +7,58 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using CDP.Data;
 using CDP.Models;
+using CDP.Services;
+using CDP.Models.ViewModels;
+using System.Diagnostics;
+using CDP.Services.Exceptions;
 
 namespace CDP.Controllers
 {
     public class PlantiosController : Controller
     {
-        private readonly CDPContext _context;
+        private readonly PlantioService _plantioService;
+        private readonly TalhoesService _talhoesService;
+        private readonly SafraService _safraService;
 
-        public PlantiosController(CDPContext context)
+        public PlantiosController(PlantioService plantioService, TalhoesService talhoesService, SafraService safraService)
         {
-            _context = context;
+            _plantioService = plantioService;
+            _talhoesService = talhoesService;
+            _safraService = safraService;
         }
 
         // GET: Plantios
         public async Task<IActionResult> Index()
         {
-              return View(await _context.Plantio.ToListAsync());
+            var list = await _plantioService.FindAllAsync();
+              return View(list);
         }
 
         // GET: Plantios/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.Plantio == null)
+            if (id == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { message = "Id usuário é nulo" });
             }
 
-            var plantio = await _context.Plantio
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var plantio = await _plantioService.FindByIdAsync(id.Value);
             if (plantio == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { message = "Id do usuário não localizado" });
             }
-
+            
             return View(plantio);
         }
 
         // GET: Plantios/Create
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
-            return View();
+            var safra = await _safraService.FindAllAsync();
+            var talhao = await _talhoesService.FindAllAsync();
+            var viewModel = new PlantioFormViewModel { Safras = safra, Talhoes = talhao };
+
+            return View(viewModel);
         }
 
         // POST: Plantios/Create
@@ -56,29 +68,36 @@ namespace CDP.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("IdPlantio,DataPlantio,Chuva,TipoPlantio,Cultura,TempoPlantio,UmidadePlantio,IdSemente,QtdSementes,DistSementes,Adubacao")] Plantio plantio)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                _context.Add(plantio);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                var safra = await _safraService.FindAllAsync();
+                var talhao = await _talhoesService.FindAllAsync();
+                var viewModel = new PlantioFormViewModel { Plantio = plantio, Safras = safra, Talhoes = talhao };
+                return View(viewModel);
             }
-            return View(plantio);
+            await _plantioService.InsertAsync(plantio);
+            return RedirectToAction(nameof(Index));
         }
 
         // GET: Plantios/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.Plantio == null)
+            if (id == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { message = "Id plantio é nulo" });
+            }
+            var obj = await _plantioService.FindByIdAsync(id.Value);
+
+            if (obj == null)
+            {
+                return RedirectToAction(nameof(Error), new { message = "Id do plantio não localizado" });
             }
 
-            var plantio = await _context.Plantio.FindAsync(id);
-            if (plantio == null)
-            {
-                return NotFound();
-            }
-            return View(plantio);
+            List<Safra> safras = await _safraService.FindAllAsync();
+            List<Talhoes> talhao = await _talhoesService.FindAllAsync();
+            PlantioFormViewModel viewModel = new PlantioFormViewModel { Plantio = obj, Safras = safras, Talhoes = talhao };
+
+            return View(viewModel);
         }
 
         // POST: Plantios/Edit/5
@@ -88,50 +107,45 @@ namespace CDP.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("IdPlantio,DataPlantio,Chuva,TipoPlantio,Cultura,TempoPlantio,UmidadePlantio,IdSemente,QtdSementes,DistSementes,Adubacao")] Plantio plantio)
         {
-            if (id != plantio.Id)
+            if (!ModelState.IsValid)
             {
-                return NotFound();
+                var safra = await _safraService.FindAllAsync();
+                var talhao = await _talhoesService.FindAllAsync();
+                var viewModel = new PlantioFormViewModel { Plantio = plantio, Safras = safra, Talhoes = talhao };
+                return View(viewModel);
             }
 
-            if (ModelState.IsValid)
+            if (id != plantio.Id)
             {
-                try
-                {
-                    _context.Update(plantio);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!PlantioExists(plantio.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
+                return RedirectToAction(nameof(Error), new { message = "Id do usuário não localizado" });
+            }
+
+            try
+            {
+                await _plantioService.UpdateAsync(plantio);
                 return RedirectToAction(nameof(Index));
             }
-            return View(plantio);
+            catch (ApplicationException e)
+            {
+                return RedirectToAction(nameof(Error), new { message = e.Message });
+            }
         }
 
         // GET: Plantios/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Plantio == null)
+            if (id == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { message = "Id usuário é nulo" });
+            }
+            var obj = await _plantioService.FindByIdAsync(id.Value);
+
+            if (obj == null)
+            {
+                return RedirectToAction(nameof(Error), new { message = "Id do usuário não localizado" });
             }
 
-            var plantio = await _context.Plantio
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (plantio == null)
-            {
-                return NotFound();
-            }
-
-            return View(plantio);
+            return View(obj);
         }
 
         // POST: Plantios/Delete/5
@@ -139,23 +153,26 @@ namespace CDP.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Plantio == null)
+            try
             {
-                return Problem("Entity set 'CDPContext.Plantio'  is null.");
+                await _plantioService.RemoveAsync(id);
+                return RedirectToAction(nameof(Index));
             }
-            var plantio = await _context.Plantio.FindAsync(id);
-            if (plantio != null)
+            catch (IntegrityException e)
             {
-                _context.Plantio.Remove(plantio);
+                return RedirectToAction(nameof(Error), new { message = e.Message });
             }
-            
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
         }
 
-        private bool PlantioExists(int id)
+        public IActionResult Error(string message)
         {
-          return _context.Plantio.Any(e => e.Id == id);
+            var viewModel = new ErrorViewModel
+            {
+                Message = message,
+                RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier
+            };
+
+            return View(viewModel);
         }
     }
 }

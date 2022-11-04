@@ -48,7 +48,7 @@ namespace CDP.Controllers
         // GET: Talhoes/Create
         public IActionResult Create()
         {
-            ViewData["FazendaId"] = new SelectList(_context.Fazenda, "IdFazenda", "Localizacao");
+            ViewData["FazendaId"] = new SelectList(_context.Fazenda, "Id", "Localizacao");
             return View();
         }
 
@@ -65,7 +65,7 @@ namespace CDP.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["FazendaId"] = new SelectList(_context.Fazenda, "IdFazenda", "Localizacao", talhoes.FazendaId);
+            ViewData["FazendaId"] = new SelectList(_context.Fazenda, "Id", "Localizacao", talhoes.FazendaId);
             return View(talhoes);
         }
 
@@ -82,7 +82,7 @@ namespace CDP.Controllers
             {
                 return NotFound();
             }
-            ViewData["FazendaId"] = new SelectList(_context.Fazenda, "IdFazenda", "Localizacao", talhoes.FazendaId);
+            ViewData["FazendaId"] = new SelectList(_context.Fazenda, "Id", "Localizacao", talhoes.FazendaId);
             return View(talhoes);
         }
 
@@ -118,7 +118,7 @@ namespace CDP.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["FazendaId"] = new SelectList(_context.Fazenda, "IdFazenda", "Localizacao", talhoes.FazendaId);
+            ViewData["FazendaId"] = new SelectList(_context.Fazenda, "Id", "Localizacao", talhoes.FazendaId);
             return View(talhoes);
         }
 

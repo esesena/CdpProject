@@ -34,7 +34,7 @@ namespace CDP.Controllers
             }
 
             var fazenda = await _context.Fazenda
-                .FirstOrDefaultAsync(m => m.IdFazenda == id);
+                .FirstOrDefaultAsync(m => m.Id == id);
             if (fazenda == null)
             {
                 return NotFound();
@@ -54,7 +54,7 @@ namespace CDP.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("IdFazenda,Nome,Localizacao,Area")] Fazenda fazenda)
+        public async Task<IActionResult> Create([Bind("Id,Nome,Localizacao,Area")] Fazenda fazenda)
         {
             if (ModelState.IsValid)
             {
@@ -86,9 +86,9 @@ namespace CDP.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("IdFazenda,Nome,Localizacao,Area")] Fazenda fazenda)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Nome,Localizacao,Area")] Fazenda fazenda)
         {
-            if (id != fazenda.IdFazenda)
+            if (id != fazenda.Id)
             {
                 return NotFound();
             }
@@ -102,7 +102,7 @@ namespace CDP.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!FazendaExists(fazenda.IdFazenda))
+                    if (!FazendaExists(fazenda.Id))
                     {
                         return NotFound();
                     }
@@ -125,7 +125,7 @@ namespace CDP.Controllers
             }
 
             var fazenda = await _context.Fazenda
-                .FirstOrDefaultAsync(m => m.IdFazenda == id);
+                .FirstOrDefaultAsync(m => m.Id == id);
             if (fazenda == null)
             {
                 return NotFound();
@@ -155,7 +155,7 @@ namespace CDP.Controllers
 
         private bool FazendaExists(int id)
         {
-          return _context.Fazenda.Any(e => e.IdFazenda == id);
+          return _context.Fazenda.Any(e => e.Id == id);
         }
     }
 }
