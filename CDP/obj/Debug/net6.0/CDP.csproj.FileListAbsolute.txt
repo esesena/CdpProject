@@ -546,3 +546,8 @@ C:\db\CdpProject\CDP\obj\Debug\net6.0\scopedcss\projectbundle\CDP.bundle.scp.css
 C:\db\CdpProject\CDP\obj\Debug\net6.0\CDP.csproj.CopyComplete
 C:\db\CdpProject\CDP\obj\Debug\net6.0\CDP.genruntimeconfig.cache
 C:\db\CdpProject\CDP\obj\Debug\net6.0\ref\CDP.dll
+C:\db\CdpProject\CDP\obj\Debug\net6.0\staticwebassets\msbuild.CDP.Microsoft.AspNetCore.StaticWebAssets.props
+C:\db\CdpProject\CDP\obj\Debug\net6.0\staticwebassets\msbuild.build.CDP.props
+C:\db\CdpProject\CDP\obj\Debug\net6.0\staticwebassets\msbuild.buildMultiTargeting.CDP.props
+C:\db\CdpProject\CDP\obj\Debug\net6.0\staticwebassets\msbuild.buildTransitive.CDP.props
+C:\db\CdpProject\CDP\obj\Debug\net6.0\staticwebassets.pack.json

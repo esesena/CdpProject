@@ -1,15 +1,18 @@
 ﻿@model CDP.Models.Safra
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Novo Cargo";
 }
 
-<h1>Create</h1>
+<div class="container-fluid px-4">
+    <div class="row border-bottom mt-2 md-4">
+        <div class="col-lg-10 col-sm-6">
+            <h2 class="" style="font-weight:bolder">
+                <i class="bi bi-person-plus m-1"></i>@ViewData["Title"]
+            </h2>
+        </div>
+    </div>
 
-<h4>Safra</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
@@ -22,12 +25,13 @@
                 <input asp-for="TalhaoId" class="form-control" />
                 <span asp-validation-for="TalhaoId" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
-</div>
+
+        <div class="flex-column mt-4">
+            <a asp-action="Index" class="btn btn-primary">Voltar</a>
+            <input type="submit" value="Cadastrar" class="btn btn-primary" />
+        </div>
+    </form>
+</div>  
 
 <div>
     <a asp-action="Index">Back to List</a>

@@ -138,10 +138,9 @@ namespace CDP.Migrations
                     b.Property<double>("Chuva")
                         .HasColumnType("double");
 
-                    b.Property<string>("Cultura")
-                        .IsRequired()
+                    b.Property<int>("Cultura")
                         .HasMaxLength(100)
-                        .HasColumnType("varchar(100)");
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("DataPlantio")
                         .HasColumnType("datetime(6)");
@@ -156,6 +155,10 @@ namespace CDP.Migrations
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("varchar(100)");
+
+                    b.Property<int>("SafraId")
+                        .HasMaxLength(100)
+                        .HasColumnType("int");
 
                     b.Property<int?>("SementesId")
                         .HasColumnType("int");
@@ -174,6 +177,8 @@ namespace CDP.Migrations
                         .HasColumnType("double");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("SafraId");
 
                     b.HasIndex("SementesId");
 
@@ -315,9 +320,17 @@ namespace CDP.Migrations
 
             modelBuilder.Entity("CDP.Models.Plantio", b =>
                 {
+                    b.HasOne("CDP.Models.Safra", "Safra")
+                        .WithMany()
+                        .HasForeignKey("SafraId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("CDP.Models.Semente", "Sementes")
                         .WithMany()
                         .HasForeignKey("SementesId");
+
+                    b.Navigation("Safra");
 
                     b.Navigation("Sementes");
                 });
