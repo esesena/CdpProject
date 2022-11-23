@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using CDP.Models.Enums;
+using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -14,6 +15,10 @@ namespace CDP.Models
         [Required(ErrorMessage = "{0} é obrigatório!")]
         [StringLength(10, ErrorMessage = "Máximo de {1} caracteres!")]
         public string Nome { get; set; }
+
+        [Display(Name = "Cultura")]
+        [Required(ErrorMessage = "{0} é obrigatório!")]
+        public Cultura Cultura { get; set; }
 
         [Display(Name = "Funcionarios")]
         [Required(ErrorMessage = "Funcionário é obrigatório!")]

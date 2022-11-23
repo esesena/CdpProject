@@ -9,6 +9,10 @@
       "PackagePath": "staticwebassets\\assets\\demo\\chart-area-demo.js"
     },
     {
+      "Id": "C:\\db\\CdpProject\\CDP\\wwwroot\\assets\\demo\\chart-area-demo2.js",
+      "PackagePath": "staticwebassets\\assets\\demo\\chart-area-demo2.js"
+    },
+    {
       "Id": "C:\\db\\CdpProject\\CDP\\wwwroot\\assets\\demo\\chart-area.js",
       "PackagePath": "staticwebassets\\assets\\demo\\chart-area.js"
     },

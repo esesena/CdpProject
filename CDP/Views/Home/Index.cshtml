@@ -19,6 +19,17 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="col-xl-3 col-md-6">
+                    <div class="card bg-success text-white mb-4">
+                        <div class="card-body">xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</div>
+                        <div class="card-footer d-flex align-items-center justify-content-between">
+                            <a class="small text-white stretched-link" href="#">View Details</a>
+                            <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="col-xl-3 col-md-6">
                     <div class="card bg-warning text-white mb-4">
                         <div class="card-body">Prioridade Média</div>
@@ -28,15 +39,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-3 col-md-6">
-                    <div class="card bg-success text-white mb-4">
-                        <div class="card-body">Prioridade Baixa</div>
-                        <div class="card-footer d-flex align-items-center justify-content-between">
-                            <a class="small text-white stretched-link" href="#">View Details</a>
-                            <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                        </div>
-                    </div>
-                </div>
+              
                 <div class="col-xl-3 col-md-6">
                     <div class="card bg-danger text-white mb-4">
                         <div class="card-body">Prioridade Alta</div>
@@ -47,7 +50,8 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
+
+           <div class="row">
                 <div class="col-xl-6">
                     <div class="card mb-4">
                         <div class="card-header">
@@ -73,9 +77,121 @@
                     <div class="card mb-4">
                         <div class="card-header">
                             <i class="fas fa-chart-area me-1"></i>
-                            Área Plantada nas Ultimas Safras
+                            Chart Test
                         </div>
-                        <div class="card-body"><canvas id="myAreaCharts" width="100%" height="40"></canvas></div>
+                        <div class="card-body">
+                            <canvas id="myAreaChart2" width="100%" height="40">
+                                <script>
+                                    const DATA_COUNT = 7;
+                                    const NUMBER_CFG = { count: DATA_COUNT, min: -100, max: 100 };
+
+                                    const labels = Utils.months({ count: 7 });
+                                    const config = {
+                                        type: 'line',
+                                        data: data,
+                                        options: {
+                                            responsive: true,
+                                            plugins: {
+                                                legend: {
+                                                    position: 'top',
+                                                },
+                                                title: {
+                                                    display: true,
+                                                    text: 'Chart.js Line Chart'
+                                                }
+                                            }
+                                        },
+                                    };
+
+                                    const data = {
+                                        labels: labels,
+                                        datasets: [
+                                            {
+                                                label: 'Dataset 1',
+                                                data: Utils.numbers(NUMBER_CFG),
+                                                borderColor: Utils.CHART_COLORS.red,
+                                                backgroundColor: Utils.transparentize(Utils.CHART_COLORS.red, 0.5),
+                                            },
+                                            {
+                                                label: 'Dataset 2',
+                                                data: Utils.numbers(NUMBER_CFG),
+                                                borderColor: Utils.CHART_COLORS.blue,
+                                                backgroundColor: Utils.transparentize(Utils.CHART_COLORS.blue, 0.5),
+                                            }
+                                        ]
+                                    };
+
+                                    const actions = [
+                                        {
+                                            name: 'Randomize',
+                                            handler(chart) {
+                                                chart.data.datasets.forEach(dataset => {
+                                                    dataset.data = Utils.numbers({ count: chart.data.labels.length, min: -100, max: 100 });
+                                                });
+                                                chart.update();
+                                            }
+                                        },
+                                        {
+                                            name: 'Add Dataset',
+                                            handler(chart) {
+                                                const data = chart.data;
+                                                const dsColor = Utils.namedColor(chart.data.datasets.length);
+                                                const newDataset = {
+                                                    label: 'Dataset ' + (data.datasets.length + 1),
+                                                    backgroundColor: Utils.transparentize(dsColor, 0.5),
+                                                    borderColor: dsColor,
+                                                    data: Utils.numbers({ count: data.labels.length, min: -100, max: 100 }),
+                                                };
+                                                chart.data.datasets.push(newDataset);
+                                                chart.update();
+                                            }
+                                        },
+                                        {
+                                            name: 'Add Data',
+                                            handler(chart) {
+                                                const data = chart.data;
+                                                if (data.datasets.length > 0) {
+                                                    data.labels = Utils.months({ count: data.labels.length + 1 });
+
+                                                    for (let index = 0; index < data.datasets.length; ++index) {
+                                                        data.datasets[index].data.push(Utils.rand(-100, 100));
+                                                    }
+
+                                                    chart.update();
+                                                }
+                                            }
+                                        },
+                                        {
+                                            name: 'Remove Dataset',
+                                            handler(chart) {
+                                                chart.data.datasets.pop();
+                                                chart.update();
+                                            }
+                                        },
+                                        {
+                                            name: 'Remove Data',
+                                            handler(chart) {
+                                                chart.data.labels.splice(-1, 1); // remove the label first
+
+                                                chart.data.datasets.forEach(dataset => {
+                                                    dataset.data.pop();
+                                                });
+
+                                                chart.update();
+                                            }
+                                        }
+                                    ];</script>
+                            </canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-6">
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <i class="fas fa-chart-bar me-1"></i>
+                            Chart Test 2
+                        </div>
+                        <div class="card-body"><canvas id="myBarChart" width="100%" height="40"></canvas></div>
                     </div>
                 </div>
             </div>
@@ -572,3 +688,12 @@
         </div>
     </main>
 </div>
+
+@*<script>
+    document.getElementById("myAreaChart2").onload(ChartLine);
+</script>*@
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

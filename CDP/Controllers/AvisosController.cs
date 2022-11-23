@@ -10,90 +10,85 @@ using CDP.Models;
 
 namespace CDP.Controllers
 {
-    public class TalhoesController : Controller
+    public class AvisosController : Controller
     {
         private readonly CDPContext _context;
 
-        public TalhoesController(CDPContext context)
+        public AvisosController(CDPContext context)
         {
             _context = context;
         }
 
-        // GET: Talhoes
+        // GET: Avisos
         public async Task<IActionResult> Index()
         {
-            var cDPContext = _context.Talhoes.Include(t => t.Fazenda);
-            return View(await cDPContext.ToListAsync());
+              return View(await _context.Aviso.ToListAsync());
         }
 
-        // GET: Talhoes/Details/5
+        // GET: Avisos/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.Talhoes == null)
+            if (id == null || _context.Aviso == null)
             {
                 return NotFound();
             }
 
-            var talhoes = await _context.Talhoes
-                .Include(t => t.Fazenda)
+            var aviso = await _context.Aviso
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (talhoes == null)
+            if (aviso == null)
             {
                 return NotFound();
             }
 
-            return View(talhoes);
+            return View(aviso);
         }
 
-        // GET: Talhoes/Create
+        // GET: Avisos/Create
         public IActionResult Create()
         {
-            ViewData["FazendaId"] = new SelectList(_context.Fazenda, "Id", "Nome");
             return View();
         }
 
-        // POST: Talhoes/Create
+        // POST: Avisos/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Nome,Localizacao,Area,TipoSolo,FazendaId")] Talhoes talhoes)
+        public async Task<IActionResult> Create([Bind("Id,Name,Description,CreationDate,Prioridade")] Aviso aviso)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(talhoes);
+                _context.Add(aviso);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["FazendaId"] = new SelectList(_context.Fazenda, "Id", "Nome", talhoes.FazendaId);
-            return View(talhoes);
+            return View(aviso);
         }
 
-        // GET: Talhoes/Edit/5
+        // GET: Avisos/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.Talhoes == null)
+            if (id == null || _context.Aviso == null)
             {
                 return NotFound();
             }
 
-            var talhoes = await _context.Talhoes.FindAsync(id);
-            if (talhoes == null)
+            var aviso = await _context.Aviso.FindAsync(id);
+            if (aviso == null)
             {
                 return NotFound();
             }
-            ViewData["FazendaId"] = new SelectList(_context.Fazenda, "Id", "Nome", talhoes.FazendaId);
-            return View(talhoes);
+            return View(aviso);
         }
 
-        // POST: Talhoes/Edit/5
+        // POST: Avisos/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Nome,Localizacao,Area,TipoSolo,FazendaId")] Talhoes talhoes)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description,CreationDate,Prioridade")] Aviso aviso)
         {
-            if (id != talhoes.Id)
+            if (id != aviso.Id)
             {
                 return NotFound();
             }
@@ -102,12 +97,12 @@ namespace CDP.Controllers
             {
                 try
                 {
-                    _context.Update(talhoes);
+                    _context.Update(aviso);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!TalhoesExists(talhoes.Id))
+                    if (!AvisoExists(aviso.Id))
                     {
                         return NotFound();
                     }
@@ -118,51 +113,49 @@ namespace CDP.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["FazendaId"] = new SelectList(_context.Fazenda, "Id", "Nome", talhoes.FazendaId);
-            return View(talhoes);
+            return View(aviso);
         }
 
-        // GET: Talhoes/Delete/5
+        // GET: Avisos/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Talhoes == null)
+            if (id == null || _context.Aviso == null)
             {
                 return NotFound();
             }
 
-            var talhoes = await _context.Talhoes
-                .Include(t => t.Fazenda)
+            var aviso = await _context.Aviso
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (talhoes == null)
+            if (aviso == null)
             {
                 return NotFound();
             }
 
-            return View(talhoes);
+            return View(aviso);
         }
 
-        // POST: Talhoes/Delete/5
+        // POST: Avisos/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Talhoes == null)
+            if (_context.Aviso == null)
             {
-                return Problem("Entity set 'CDPContext.Talhoes'  is null.");
+                return Problem("Entity set 'CDPContext.Aviso'  is null.");
             }
-            var talhoes = await _context.Talhoes.FindAsync(id);
-            if (talhoes != null)
+            var aviso = await _context.Aviso.FindAsync(id);
+            if (aviso != null)
             {
-                _context.Talhoes.Remove(talhoes);
+                _context.Aviso.Remove(aviso);
             }
             
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool TalhoesExists(int id)
+        private bool AvisoExists(int id)
         {
-          return _context.Talhoes.Any(e => e.Id == id);
+          return _context.Aviso.Any(e => e.Id == id);
         }
     }
 }

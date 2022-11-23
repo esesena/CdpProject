@@ -16,6 +16,26 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\db\CdpProject\CDP
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/db/CdpProject/CDP/Views/Avisos/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXZpc29zXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/db/CdpProject/CDP/Views/Avisos/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXZpc29zXERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/db/CdpProject/CDP/Views/Avisos/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXZpc29zXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/db/CdpProject/CDP/Views/Avisos/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXZpc29zXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/db/CdpProject/CDP/Views/Avisos/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXZpc29zXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/db/CdpProject/CDP/Views/Cargos/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FyZ29zXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 

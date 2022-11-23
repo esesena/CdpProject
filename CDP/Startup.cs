@@ -27,8 +27,12 @@ public class Startup
         
         services.AddScoped<UsuarioService>();
         services.AddScoped<CargoService>();
-        //services.AddScoped<DepartmentService>();
-        //services.AddScoped<SalesRecordService>();
+        services.AddScoped<FazendaService>();
+        services.AddScoped<PlantioService>();
+        services.AddScoped<SafraService>();
+        services.AddScoped<TalhoesService>();
+        services.AddScoped<FuncionarioService>();
+
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -67,7 +71,7 @@ public class Startup
         {
             endpoints.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Cargos}/{action=Index}/{id?}");
+                pattern: "{controller=Home}/{action=Index}/{id?}");
         });
     }
 }

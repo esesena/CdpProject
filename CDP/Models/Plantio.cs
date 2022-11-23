@@ -16,6 +16,7 @@ namespace CDP.Models
 
         [Display(Name = "Data do Plantio")]
         [Required(ErrorMessage = "{0} é obrigatório!")]
+        [DataType(DataType.DateTime)]
         public DateTime DataPlantio { get; set; }
 
         [Display(Name = "Quantidade de Chuva")]

@@ -7,46 +7,54 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using CDP.Data;
 using CDP.Models;
+using CDP.Services;
+using CDP.Models.ViewModels;
+using System.Diagnostics;
+using CDP.Services.Exceptions;
 
 namespace CDP.Controllers
 {
     public class SafrasController : Controller
     {
-        private readonly CDPContext _context;
+        private readonly SafraService _safraService;
+        private readonly FuncionarioService _funcionarioService;
 
-        public SafrasController(CDPContext context)
+        public SafrasController(SafraService safraService, FuncionarioService funcionarioService)
         {
-            _context = context;
+            _safraService = safraService;
+            _funcionarioService = funcionarioService;
         }
 
         // GET: Safras
         public async Task<IActionResult> Index()
         {
-              return View(await _context.Safra.ToListAsync());
+            var list = await _safraService.FindAllAsync();
+            return View(list);
         }
 
         // GET: Safras/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.Safra == null)
+            if (id == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { message = "Id usuário é nulo" });
             }
 
-            var safra = await _context.Safra
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (safra == null)
+            var usuario = await _safraService.FindByIdAsync(id.Value);
+            if (usuario == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { message = "Id do usuário não localizado" });
             }
 
-            return View(safra);
+            return View(usuario);
         }
 
         // GET: Safras/Create
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
-            return View();
+            var funcionario = await _funcionarioService.FindAllAsync();
+            var viewModel = new SafraFormViewModel { Funcionarios = funcionario };
+            return View(viewModel);
         }
 
         // POST: Safras/Create
@@ -54,31 +62,36 @@ namespace CDP.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("IdSafra,Nome,IdTalhao")] Safra safra)
+        public async Task<IActionResult> Create(Safra safra)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                _context.Add(safra);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                var funcionarios = await _funcionarioService.FindAllAsync();
+                var viewModel = new SafraFormViewModel { Safra = safra, Funcionarios = funcionarios};
+                return View(viewModel);
             }
-            return View(safra);
+            await _safraService.InsertAsync(safra);
+            return RedirectToAction(nameof(Index));
         }
 
         // GET: Safras/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.Safra == null)
+            if (id == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { message = "Id usuário é nulo" });
+            }
+            var obj = await _safraService.FindByIdAsync(id.Value);
+
+            if (obj == null)
+            {
+                return RedirectToAction(nameof(Error), new { message = "Id do usuário não localizado" });
             }
 
-            var safra = await _context.Safra.FindAsync(id);
-            if (safra == null)
-            {
-                return NotFound();
-            }
-            return View(safra);
+            List<Funcionario> funcionarios = await _funcionarioService.FindAllAsync();
+            SafraFormViewModel viewModel = new SafraFormViewModel { Safra = obj, Funcionarios = funcionarios };
+
+            return View(viewModel);
         }
 
         // POST: Safras/Edit/5
@@ -86,52 +99,47 @@ namespace CDP.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("IdSafra,Nome,IdTalhao")] Safra safra)
+        public async Task<IActionResult> Edit(int id, Safra safra)
         {
-            if (id != safra.Id)
+            if (!ModelState.IsValid)
             {
-                return NotFound();
+                var funcionarios = await _funcionarioService.FindAllAsync();
+                var viewModel = new SafraFormViewModel { Safra = safra, Funcionarios = funcionarios };
+
+                return View(viewModel);
             }
 
-            if (ModelState.IsValid)
+            if (id != safra.Id)
             {
-                try
-                {
-                    _context.Update(safra);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!SafraExists(safra.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
+                return RedirectToAction(nameof(Error), new { message = "Id do usuário não localizado" });
+            }
+
+            try
+            {
+                await _safraService.UpdateAsync(safra);
                 return RedirectToAction(nameof(Index));
             }
-            return View(safra);
+            catch (ApplicationException e)
+            {
+                return RedirectToAction(nameof(Error), new { message = e.Message });
+            }
         }
 
         // GET: Safras/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Safra == null)
+            if (id == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { message = "Id usuário é nulo" });
+            }
+            var obj = await _safraService.FindByIdAsync(id.Value);
+
+            if (obj == null)
+            {
+                return RedirectToAction(nameof(Error), new { message = "Id do usuário não localizado" });
             }
 
-            var safra = await _context.Safra
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (safra == null)
-            {
-                return NotFound();
-            }
-
-            return View(safra);
+            return View(obj);
         }
 
         // POST: Safras/Delete/5
@@ -139,23 +147,26 @@ namespace CDP.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Safra == null)
+            try
             {
-                return Problem("Entity set 'CDPContext.Safra'  is null.");
+                await _safraService.RemoveAsync(id);
+                return RedirectToAction(nameof(Index));
             }
-            var safra = await _context.Safra.FindAsync(id);
-            if (safra != null)
+            catch (IntegrityException e)
             {
-                _context.Safra.Remove(safra);
+                return RedirectToAction(nameof(Error), new { message = e.Message });
             }
-            
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
         }
 
-        private bool SafraExists(int id)
+        public IActionResult Error(string message)
         {
-          return _context.Safra.Any(e => e.Id == id);
+            var viewModel = new ErrorViewModel
+            {
+                Message = message,
+                RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier
+            };
+
+            return View(viewModel);
         }
     }
 }

@@ -1,25 +1,10 @@
-function ChartLine() {
+// Area Chart Example
+function chartLine() {
+    console.log("oi")
     const DATA_COUNT = 7;
     const NUMBER_CFG = { count: DATA_COUNT, min: -100, max: 100 };
 
     const labels = Utils.months({ count: 7 });
-    const config = {
-        type: 'line',
-        data: data,
-        options: {
-            responsive: true,
-            plugins: {
-                legend: {
-                    position: 'top',
-                },
-                title: {
-                    display: true,
-                    text: 'Chart.js Line Chart'
-                }
-            }
-        },
-    };
-
     const data = {
         labels: labels,
         datasets: [
@@ -36,6 +21,22 @@ function ChartLine() {
                 backgroundColor: Utils.transparentize(Utils.CHART_COLORS.blue, 0.5),
             }
         ]
+    };
+    const config = {
+        type: 'line',
+        data: data,
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'top',
+                },
+                title: {
+                    display: true,
+                    text: 'Chart.js Line Chart'
+                }
+            }
+        }
     };
 
     const actions = [

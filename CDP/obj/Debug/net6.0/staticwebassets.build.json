@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "uHmFx8E7TDP6VfniNjOU23Vdlkg/X4pibFs2xEQtQW4=",
+  "Hash": "sZ6QjFSSlv09ghOTJIsohdyNehD9tLTRo7E+fnTIedY=",
   "Source": "CDP",
   "BasePath": "_content/CDP",
   "Mode": "Default",
@@ -83,6 +83,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\assets\\demo\\chart-area-demo.js"
+    },
+    {
+      "Identity": "C:\\db\\CdpProject\\CDP\\wwwroot\\assets\\demo\\chart-area-demo2.js",
+      "SourceId": "CDP",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\db\\CdpProject\\CDP\\wwwroot\\",
+      "BasePath": "_content/CDP",
+      "RelativePath": "assets/demo/chart-area-demo2.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\demo\\chart-area-demo2.js"
     },
     {
       "Identity": "C:\\db\\CdpProject\\CDP\\wwwroot\\assets\\demo\\chart-bar-demo.js",

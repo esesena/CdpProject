@@ -33,6 +33,7 @@ namespace CDP.Models
 
         [Display(Name = "Data de Nascimento")]
         [Required(ErrorMessage = "{0} é obrigatório!")]
+        [DataType(DataType.DateTime)]
         public DataType DataNascimento { get; set; }
 
         [Display(Name = "CEP")]
