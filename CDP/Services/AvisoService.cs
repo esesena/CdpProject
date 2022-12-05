@@ -14,9 +14,20 @@ namespace CDP.Services
             _context = context;
         }
 
-        public async Task<List<Aviso>> FindAllAsync()
+        public async Task<List<Aviso>> FindLowPriority()
         {
-            return await _context.Aviso.OrderBy(x => x.Name).ToListAsync();
+            return await _context.Aviso.OrderBy(x => x.Name).Where(x => x.Prioridade == 0).ToListAsync();
         }
+
+        public async Task<List<Aviso>> FindByPriority(int priority)
+        {
+            return await _context.Aviso.OrderBy(x => x.Name).Where(x => (int)x.Prioridade == priority).ToListAsync();
+        }
+
+        public async Task<List<Aviso>> FindAllLow()
+        {
+            return await _context.Aviso.OrderBy(x => x.Name).Where(x => x.Prioridade == 0).ToListAsync();
+        }
+
     }
 }

@@ -5,7 +5,7 @@ namespace CDP.Models.ViewModels
     public class PlantioFormViewModel
     {
         public Plantio Plantio { get; set; }
-        public ICollection<Safra> Safras { get; set; }
-        public ICollection<Talhoes> Talhoes { get; set; }
+        public IEnumerable<Talhoes> Talhao { get; set; }
+        public ICollection<Semente> Sementes { get; set; }
     }
 }

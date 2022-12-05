@@ -65,6 +65,14 @@
       "PackagePath": "staticwebassets\\assets\\img\\error-404-monochrome.svg"
     },
     {
+      "Id": "C:\\db\\CdpProject\\CDP\\wwwroot\\assets\\img\\switch.png",
+      "PackagePath": "staticwebassets\\assets\\img\\switch.png"
+    },
+    {
+      "Id": "C:\\db\\CdpProject\\CDP\\wwwroot\\css\\chosen.min.css",
+      "PackagePath": "staticwebassets\\css\\chosen.min.css"
+    },
+    {
       "Id": "C:\\db\\CdpProject\\CDP\\wwwroot\\css\\site-Scarabeli-PC.css",
       "PackagePath": "staticwebassets\\css\\site-Scarabeli-PC.css"
     },
@@ -81,12 +89,24 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "C:\\db\\CdpProject\\CDP\\wwwroot\\js\\chosen.jquery.js",
+      "PackagePath": "staticwebassets\\js\\chosen.jquery.js"
+    },
+    {
+      "Id": "C:\\db\\CdpProject\\CDP\\wwwroot\\js\\chosen.jquery.min.js",
+      "PackagePath": "staticwebassets\\js\\chosen.jquery.min.js"
+    },
+    {
       "Id": "C:\\db\\CdpProject\\CDP\\wwwroot\\js\\datatables-simple-demo.js",
       "PackagePath": "staticwebassets\\js\\datatables-simple-demo.js"
     },
     {
       "Id": "C:\\db\\CdpProject\\CDP\\wwwroot\\js\\jquery-3.6.1.js",
       "PackagePath": "staticwebassets\\js\\jquery-3.6.1.js"
+    },
+    {
+      "Id": "C:\\db\\CdpProject\\CDP\\wwwroot\\js\\jquery-3.6.1.min.js",
+      "PackagePath": "staticwebassets\\js\\jquery-3.6.1.min.js"
     },
     {
       "Id": "C:\\db\\CdpProject\\CDP\\wwwroot\\js\\scripts.js",

@@ -35,8 +35,9 @@ namespace CDP.Models
         [Display(Name = "Fazenda")]
         [Required(ErrorMessage = "Fazenda é obrigatório!")]
         public int FazendaId { get; set; }
-
         public virtual Fazenda Fazenda { get; set; }
+
+        public ICollection<Plantio>? Plantio { get; set; }
 
         public Talhoes(int idTalhao, string nome, string localizacao, double area, string tipoSolo, Fazenda fazenda)
         {

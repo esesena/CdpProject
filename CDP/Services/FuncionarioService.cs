@@ -26,7 +26,7 @@ namespace CDP.Services
 
         public async Task<Funcionario> FindByIdAsync(int id)
         {
-            return await _context.Funcionario.FirstOrDefaultAsync(obj => obj.Id == id);
+            return await _context.Funcionario.Include(obj => obj.Cargo).FirstOrDefaultAsync(obj => obj.Id == id); ;
         }
 
         public async Task UpdateAsync(Funcionario obj)

@@ -1,89 +1,72 @@
 ﻿@model IEnumerable<CDP.Models.Plantio>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Plantio";
 }
 
-<h1>Index</h1>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.DataPlantio)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Chuva)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TipoPlantio)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Cultura)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TempoPlantio)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.UmidadePlantio)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IdSemente)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.QtdSementes)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DistSementes)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Adubacao)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.DataPlantio)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Chuva)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TipoPlantio)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Cultura)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TempoPlantio)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UmidadePlantio)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IdSemente)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.QtdSementes)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DistSementes)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Adubacao)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
+<div class="container-fluid px-4">
+    <div class="row border-bottom mt-2 md-4">
+        <div class="col-lg-10 col-sm-6">
+            <h2 class="" style="font-weight:bolder"><i class="bi bi-people"></i>@ViewData["Title"]</h2>
+        </div>
+        <div class="col-sm-6 col-md-2">
+            <a asp-action="Create" class="btn btn-primary">
+                Novo Plantio
+            </a>
+        </div>
+    </div>
+    <table class="mt-4 table table-hover">
+        <thead class="table-primary">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.DataPlantio)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Cultura)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Safra)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DistSementes)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Adubacao)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DataPlantio)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Cultura)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Safra)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DistSementes)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Adubacao)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id"><i class="btn bi bi-pencil-square"></i></a> |
+                        <a asp-action="Details" asp-route-id="@item.Id"><i class="btn bi bi-card-text"></i></a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id"><i class="btn bi bi-trash3"></i></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }
-    </tbody>
-</table>

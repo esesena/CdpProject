@@ -4,78 +4,76 @@
     ViewData["Title"] = "Delete";
 }
 
-<h1>Delete</h1>
+<div class="container-fluid px-4">
+    <div class="row border-bottom mt-2 md-4">
+        <div class="col-lg-10 col-sm-6">
+            <h2 class="" style="font-weight:bolder">
+                <i class="bi bi-person-dash m-1"></i>@ViewData["Title"]
+            </h2>
+        </div>
+    </div>
+    <div class="mt-4">
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.DataPlantio)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.DataPlantio)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Chuva)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Chuva)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.TipoPlantio)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.TipoPlantio)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.TempoPlantio)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.TempoPlantio)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.UmidadePlantio)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.UmidadePlantio)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.SementeId)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.SementeId)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.QtdSementes)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.QtdSementes)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.DistSementes)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.DistSementes)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Adubacao)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Adubacao)
+            </dd>
+        </dl>
+    </div>
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>Plantio</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.DataPlantio)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.DataPlantio)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Chuva)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Chuva)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.TipoPlantio)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.TipoPlantio)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Cultura)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Cultura)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.TempoPlantio)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.TempoPlantio)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.UmidadePlantio)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.UmidadePlantio)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IdSemente)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IdSemente)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.QtdSementes)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.QtdSementes)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.DistSementes)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.DistSementes)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Adubacao)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Adubacao)
-        </dd>
-    </dl>
-    
     <form asp-action="Delete">
         <input type="hidden" asp-for="Id" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
+        <input type="submit" value="Delete" class="btn btn-danger" />
+        <a asp-action="Index" class="btn btn-primary">Voltar</a>
     </form>
 </div>

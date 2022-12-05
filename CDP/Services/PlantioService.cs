@@ -19,6 +19,11 @@ namespace CDP.Services
             return await _context.Plantio.OrderByDescending(x => x.Safra).ToListAsync();
         }
 
+        public async Task<List<Plantio>> FindAllByTalhaoAsync()
+        {
+            return await _context.Plantio.OrderByDescending(x => x.Safra).ToListAsync();
+        }
+
         public async Task InsertAsync(Plantio obj)
         {
             _context.Add(obj);

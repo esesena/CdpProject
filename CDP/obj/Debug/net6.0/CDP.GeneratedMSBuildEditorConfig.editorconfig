@@ -124,26 +124,6 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGxhbnRpb3NcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/db/CdpProject/CDP/Views/Safras/Create.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2FmcmFzXENyZWF0ZS5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/db/CdpProject/CDP/Views/Safras/Delete.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2FmcmFzXERlbGV0ZS5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/db/CdpProject/CDP/Views/Safras/Details.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2FmcmFzXERldGFpbHMuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/db/CdpProject/CDP/Views/Safras/Edit.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2FmcmFzXEVkaXQuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/db/CdpProject/CDP/Views/Safras/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2FmcmFzXEluZGV4LmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
 [C:/db/CdpProject/CDP/Views/Sementes/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2VtZW50ZXNcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 

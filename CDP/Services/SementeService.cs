@@ -5,37 +5,36 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CDP.Services
 {
-    public class SafraService
+    public class SementeService
     {
         public readonly CDPContext _context;
 
-        public SafraService(CDPContext context)
+        public SementeService(CDPContext context)
         {
             _context = context;
         }
-
-        public async Task<List<Safra>> FindAllAsync()
+        public async Task<List<Semente>> FindAllAsync()
         {
-            return await _context.Safra.OrderBy(x => x.Nome).ToListAsync();
+            return await _context.Semente.OrderBy(x => x.Descricao).ToListAsync();
         }
 
-        public async Task InsertAsync(Safra obj)
+        public async Task InsertAsync(Semente obj)
         {
             _context.Add(obj);
             await _context.SaveChangesAsync();
         }
 
-        public async Task<Safra> FindByIdAsync(int id)
+        public async Task<Semente> FindByIdAsync(int id)
         {
-            return await _context.Safra.FirstOrDefaultAsync(obj => obj.Id == id);
+            return await _context.Semente.FirstOrDefaultAsync(obj => obj.Id == id);
         }
 
-        public async Task UpdateAsync(Safra obj)
+        public async Task UpdateAsync(Semente obj)
         {
-            bool hasAny = await _context.Safra.AnyAsync(x => x.Id == obj.Id);
+            bool hasAny = await _context.Semente.AnyAsync(x => x.Id == obj.Id);
             if (!hasAny)
             {
-                throw new NotFoundException("Id do usuário não encontrado");
+                throw new NotFoundException("Id da Semente não encontrado");
             }
             try
             {
@@ -44,7 +43,7 @@ namespace CDP.Services
             }
             catch (DbUpdateConcurrencyException)
             {
-                throw new IntegrityException("Erro ao deletar cargo por existência de vínculo de funcionário");
+                throw new IntegrityException("Erro ao deletar usuário por existência de vínculo de negócio");
             }
         }
 
@@ -52,7 +51,7 @@ namespace CDP.Services
         {
             try
             {
-                var obj = await _context.Safra.FindAsync(id);
+                var obj = await _context.Semente.FindAsync(id);
                 _context.Remove(obj);
                 await _context.SaveChangesAsync();
             }

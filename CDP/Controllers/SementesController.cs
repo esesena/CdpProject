@@ -7,40 +7,44 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using CDP.Data;
 using CDP.Models;
+using CDP.Services;
+using CDP.Models.ViewModels;
+using System.Diagnostics;
+using CDP.Services.Exceptions;
 
 namespace CDP.Controllers
 {
     public class SementesController : Controller
     {
-        private readonly CDPContext _context;
 
-        public SementesController(CDPContext context)
+        private readonly SementeService _sementeService;
+
+        public SementesController(SementeService sementeService)
         {
-            _context = context;
+            _sementeService = sementeService;
         }
 
-        // GET: Sementes
         public async Task<IActionResult> Index()
         {
-              return View(await _context.Semente.ToListAsync());
+            var list = await _sementeService.FindAllAsync();
+            return View(list);
         }
 
         // GET: Sementes/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.Semente == null)
+            if (id == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { message = "Id cargo é nulo" });
             }
 
-            var semente = await _context.Semente
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (semente == null)
+            var cargos = await _sementeService.FindByIdAsync(id.Value);
+            if (cargos == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { message = "Id do cargo não localizado" });
             }
 
-            return View(semente);
+            return View(cargos);
         }
 
         // GET: Sementes/Create
@@ -54,12 +58,11 @@ namespace CDP.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("IdSemente,Descricao")] Semente semente)
+        public async Task<IActionResult> Create(Semente semente)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(semente);
-                await _context.SaveChangesAsync();
+                await _sementeService.InsertAsync(semente);
                 return RedirectToAction(nameof(Index));
             }
             return View(semente);
@@ -68,15 +71,15 @@ namespace CDP.Controllers
         // GET: Sementes/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.Semente == null)
+            if (id == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { message = "Id semente é nulo" });
             }
 
-            var semente = await _context.Semente.FindAsync(id);
+            var semente = await _sementeService.FindByIdAsync(id.Value);
             if (semente == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { message = "Id do semente não localizado" });
             }
             return View(semente);
         }
@@ -86,52 +89,43 @@ namespace CDP.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("IdSemente,Descricao")] Semente semente)
+        public async Task<IActionResult> Edit(int id, Semente semente)
         {
-            if (id != semente.Id)
+            if (!ModelState.IsValid)
             {
-                return NotFound();
+                return View(semente);
             }
 
-            if (ModelState.IsValid)
+            if (id != semente.Id)
             {
-                try
-                {
-                    _context.Update(semente);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!SementeExists(semente.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
+                return RedirectToAction(nameof(Error), new { message = "Id do cargo não localizado" });
+            }
+            try
+            {
+                await _sementeService.UpdateAsync(semente);
                 return RedirectToAction(nameof(Index));
             }
-            return View(semente);
+            catch (ApplicationException e)
+            {
+                return RedirectToAction(nameof(Error), new { message = e.Message });
+            }
         }
 
         // GET: Sementes/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Semente == null)
+            if (id == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { message = "Id semente é nulo" });
+            }
+            var obj = await _sementeService.FindByIdAsync(id.Value);
+
+            if (obj == null)
+            {
+                return RedirectToAction(nameof(Error), new { message = "Id do semente não localizado" });
             }
 
-            var semente = await _context.Semente
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (semente == null)
-            {
-                return NotFound();
-            }
-
-            return View(semente);
+            return View(obj);
         }
 
         // POST: Sementes/Delete/5
@@ -139,23 +133,26 @@ namespace CDP.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Semente == null)
+            try
             {
-                return Problem("Entity set 'CDPContext.Semente'  is null.");
+                await _sementeService.RemoveAsync(id);
+                return RedirectToAction(nameof(Index));
             }
-            var semente = await _context.Semente.FindAsync(id);
-            if (semente != null)
+            catch (IntegrityException e)
             {
-                _context.Semente.Remove(semente);
+                return RedirectToAction(nameof(Error), new { message = e.Message });
             }
-            
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
         }
 
-        private bool SementeExists(int id)
+        public IActionResult Error(string message)
         {
-          return _context.Semente.Any(e => e.Id == id);
+            var viewModel = new ErrorViewModel
+            {
+                Message = message,
+                RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier
+            };
+
+            return View(viewModel);
         }
     }
 }

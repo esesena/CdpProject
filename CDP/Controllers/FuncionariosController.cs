@@ -7,46 +7,55 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using CDP.Data;
 using CDP.Models;
+using CDP.Services;
+using CDP.Models.ViewModels;
+using System.Diagnostics;
+using CDP.Services.Exceptions;
 
 namespace CDP.Controllers
 {
     public class FuncionariosController : Controller
     {
-        private readonly CDPContext _context;
+        private readonly FuncionarioService _funcionarioService;
+        private readonly CargoService _cargosService;
 
-        public FuncionariosController(CDPContext context)
+        public FuncionariosController(FuncionarioService funcionarioService, CargoService cargosService)
         {
-            _context = context;
+            _funcionarioService = funcionarioService;
+            _cargosService = cargosService;
         }
 
-        // GET: Funcionarios
-        public async Task<IActionResult> Index()
+            // GET: Funcionarios
+            public async Task<IActionResult> Index()
         {
-              return View(await _context.Funcionario.ToListAsync());
+            var list = await _funcionarioService.FindAllAsync();
+            return View(list);
         }
 
         // GET: Funcionarios/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.Funcionario == null)
+            if (id == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { message = "Id usuário é nulo" });
             }
 
-            var funcionario = await _context.Funcionario
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var funcionario = await _funcionarioService.FindByIdAsync(id.Value);
             if (funcionario == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { message = "Id do usuário não localizado" });
             }
 
             return View(funcionario);
         }
 
         // GET: Funcionarios/Create
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
-            return View();
+            var cargo = await _cargosService.FindAllAsync();
+            var viewModel = new FuncionarioFormViewModel { Cargos = cargo };
+
+            return View(viewModel);
         }
 
         // POST: Funcionarios/Create
@@ -54,31 +63,36 @@ namespace CDP.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("IdFuncionario,Nome,Cpf,IdCargo,CargaHoraria,DataNascimento,Cep,Logradouro,Bairro,Cidade,Estado")] Funcionario funcionario)
+        public async Task<IActionResult> Create(Funcionario funcionario)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                _context.Add(funcionario);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                var cargos = await _cargosService.FindAllAsync();
+                var viewModel = new FuncionarioFormViewModel { Funcionario = funcionario, Cargos = cargos };
+                return View(viewModel);
             }
-            return View(funcionario);
+            await _funcionarioService.InsertAsync(funcionario);
+            return RedirectToAction(nameof(Index));
         }
 
         // GET: Funcionarios/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.Funcionario == null)
+            if (id == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { message = "Id usuário é nulo" });
+            }
+            var obj = await _funcionarioService.FindByIdAsync(id.Value);
+
+            if (obj == null)
+            {
+                return RedirectToAction(nameof(Error), new { message = "Id do usuário não localizado" });
             }
 
-            var funcionario = await _context.Funcionario.FindAsync(id);
-            if (funcionario == null)
-            {
-                return NotFound();
-            }
-            return View(funcionario);
+            List<Cargo> cargos = await _cargosService.FindAllAsync();
+            FuncionarioFormViewModel viewModel = new FuncionarioFormViewModel { Funcionario = obj, Cargos = cargos };
+
+            return View(viewModel);
         }
 
         // POST: Funcionarios/Edit/5
@@ -86,52 +100,47 @@ namespace CDP.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("IdFuncionario,Nome,Cpf,IdCargo,CargaHoraria,DataNascimento,Cep,Logradouro,Bairro,Cidade,Estado")] Funcionario funcionario)
+        public async Task<IActionResult> Edit(int id, Funcionario funcionario)
         {
-            if (id != funcionario.Id)
+            if (!ModelState.IsValid)
             {
-                return NotFound();
+                var cargos = await _cargosService.FindAllAsync();
+                var viewModel = new FuncionarioFormViewModel { Funcionario = funcionario, Cargos = cargos };
+
+                return View(viewModel);
             }
 
-            if (ModelState.IsValid)
+            if (id != funcionario.Id)
             {
-                try
-                {
-                    _context.Update(funcionario);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!FuncionarioExists(funcionario.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
+                return RedirectToAction(nameof(Error), new { message = "Id do usuário não localizado" });
+            }
+
+            try
+            {
+                await _funcionarioService.UpdateAsync(funcionario);
                 return RedirectToAction(nameof(Index));
             }
-            return View(funcionario);
+            catch (ApplicationException e)
+            {
+                return RedirectToAction(nameof(Error), new { message = e.Message });
+            }
         }
 
         // GET: Funcionarios/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Funcionario == null)
+            if (id == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { message = "Id usuário é nulo" });
+            }
+            var obj = await _funcionarioService.FindByIdAsync(id.Value);
+
+            if (obj == null)
+            {
+                return RedirectToAction(nameof(Error), new { message = "Id do usuário não localizado" });
             }
 
-            var funcionario = await _context.Funcionario
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (funcionario == null)
-            {
-                return NotFound();
-            }
-
-            return View(funcionario);
+            return View(obj);
         }
 
         // POST: Funcionarios/Delete/5
@@ -139,23 +148,26 @@ namespace CDP.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Funcionario == null)
+            try
             {
-                return Problem("Entity set 'CDPContext.Funcionario'  is null.");
+                await _funcionarioService.RemoveAsync(id);
+                return RedirectToAction(nameof(Index));
             }
-            var funcionario = await _context.Funcionario.FindAsync(id);
-            if (funcionario != null)
+            catch (IntegrityException e)
             {
-                _context.Funcionario.Remove(funcionario);
+                return RedirectToAction(nameof(Error), new { message = e.Message });
             }
-            
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
         }
 
-        private bool FuncionarioExists(int id)
+        public IActionResult Error(string message)
         {
-          return _context.Funcionario.Any(e => e.Id == id);
+            var viewModel = new ErrorViewModel
+            {
+                Message = message,
+                RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier
+            };
+
+            return View(viewModel);
         }
     }
 }

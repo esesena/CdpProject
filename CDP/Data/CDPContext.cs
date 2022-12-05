@@ -17,8 +17,6 @@ namespace CDP.Data
 
         public DbSet<Plantio> Plantio { get; set; }
 
-        public DbSet<Safra> Safra { get; set; }
-
         public DbSet<Semente> Semente { get; set; }
 
         public DbSet<Fazenda> Fazenda { get; set; }

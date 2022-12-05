@@ -18,13 +18,13 @@ namespace CDP.Controllers
     {
         private readonly PlantioService _plantioService;
         private readonly TalhoesService _talhoesService;
-        private readonly SafraService _safraService;
+        private readonly SementeService _sementeService;
 
-        public PlantiosController(PlantioService plantioService, TalhoesService talhoesService, SafraService safraService)
+        public PlantiosController(PlantioService plantioService, TalhoesService talhoesService, SementeService sementeService)
         {
             _plantioService = plantioService;
             _talhoesService = talhoesService;
-            _safraService = safraService;
+            _sementeService = sementeService;
         }
 
         // GET: Plantios
@@ -54,9 +54,12 @@ namespace CDP.Controllers
         // GET: Plantios/Create
         public async Task<IActionResult> Create()
         {
-            var safra = await _safraService.FindAllAsync();
             var talhao = await _talhoesService.FindAllAsync();
-            var viewModel = new PlantioFormViewModel { Safras = safra, Talhoes = talhao };
+            var semente = await _sementeService.FindAllAsync();
+            var listaTalhoes = talhao.ToList();
+            ViewBag.listaTalhoes = listaTalhoes;
+
+            var viewModel = new PlantioFormViewModel { Talhao = talhao, Sementes = semente };
 
             return View(viewModel);
         }
@@ -66,13 +69,13 @@ namespace CDP.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("IdPlantio,DataPlantio,Chuva,TipoPlantio,Cultura,TempoPlantio,UmidadePlantio,IdSemente,QtdSementes,DistSementes,Adubacao")] Plantio plantio)
+        public async Task<IActionResult> Create( Plantio plantio)
         {
             if (!ModelState.IsValid)
             {
-                var safra = await _safraService.FindAllAsync();
                 var talhao = await _talhoesService.FindAllAsync();
-                var viewModel = new PlantioFormViewModel { Plantio = plantio, Safras = safra, Talhoes = talhao };
+                var semente = await _sementeService.FindAllAsync();
+                var viewModel = new PlantioFormViewModel { Plantio = plantio, Talhao = talhao, Sementes = semente };
                 return View(viewModel);
             }
             await _plantioService.InsertAsync(plantio);
@@ -93,9 +96,9 @@ namespace CDP.Controllers
                 return RedirectToAction(nameof(Error), new { message = "Id do plantio não localizado" });
             }
 
-            List<Safra> safras = await _safraService.FindAllAsync();
             List<Talhoes> talhao = await _talhoesService.FindAllAsync();
-            PlantioFormViewModel viewModel = new PlantioFormViewModel { Plantio = obj, Safras = safras, Talhoes = talhao };
+            List<Semente> sementes = await _sementeService.FindAllAsync();
+            PlantioFormViewModel viewModel = new PlantioFormViewModel { Plantio = obj, Talhao = talhao, Sementes = sementes };
 
             return View(viewModel);
         }
@@ -105,13 +108,13 @@ namespace CDP.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("IdPlantio,DataPlantio,Chuva,TipoPlantio,Cultura,TempoPlantio,UmidadePlantio,IdSemente,QtdSementes,DistSementes,Adubacao")] Plantio plantio)
+        public async Task<IActionResult> Edit(int id, Plantio plantio)
         {
             if (!ModelState.IsValid)
             {
-                var safra = await _safraService.FindAllAsync();
                 var talhao = await _talhoesService.FindAllAsync();
-                var viewModel = new PlantioFormViewModel { Plantio = plantio, Safras = safra, Talhoes = talhao };
+                var semente = await _sementeService.FindAllAsync();
+                var viewModel = new PlantioFormViewModel { Plantio = plantio, Talhao = talhao, Sementes = semente};
                 return View(viewModel);
             }
 

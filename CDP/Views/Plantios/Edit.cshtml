@@ -1,79 +1,80 @@
-﻿@model CDP.Models.Plantio
+﻿@model PlantioFormViewModel
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Editar";
 }
 
-<h1>Edit</h1>
-
-<h4>Plantio</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Id" />
-            <div class="form-group">
-                <label asp-for="DataPlantio" class="control-label"></label>
-                <input asp-for="DataPlantio" class="form-control" />
-                <span asp-validation-for="DataPlantio" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Chuva" class="control-label"></label>
-                <input asp-for="Chuva" class="form-control" />
-                <span asp-validation-for="Chuva" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="TipoPlantio" class="control-label"></label>
-                <input asp-for="TipoPlantio" class="form-control" />
-                <span asp-validation-for="TipoPlantio" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Cultura" class="control-label"></label>
-                <input asp-for="Cultura" class="form-control" />
-                <span asp-validation-for="Cultura" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="TempoPlantio" class="control-label"></label>
-                <input asp-for="TempoPlantio" class="form-control" />
-                <span asp-validation-for="TempoPlantio" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="UmidadePlantio" class="control-label"></label>
-                <input asp-for="UmidadePlantio" class="form-control" />
-                <span asp-validation-for="UmidadePlantio" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="IdSemente" class="control-label"></label>
-                <input asp-for="IdSemente" class="form-control" />
-                <span asp-validation-for="IdSemente" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="QtdSementes" class="control-label"></label>
-                <input asp-for="QtdSementes" class="form-control" />
-                <span asp-validation-for="QtdSementes" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="DistSementes" class="control-label"></label>
-                <input asp-for="DistSementes" class="form-control" />
-                <span asp-validation-for="DistSementes" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Adubacao" class="control-label"></label>
-                <input asp-for="Adubacao" class="form-control" />
-                <span asp-validation-for="Adubacao" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
+<div class="container-fluid px-4">
+    <div class="row border-bottom mt-2 md-4">
+        <div class="col-lg-10 col-sm-6">
+            <h2 class="" style="font-weight:bolder">
+                <i class="bi bi-person-plus m-1"></i>@ViewData["Title"]
+            </h2>
+        </div>
     </div>
-</div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="Plantio.Id" />
+                <div class="form-group">
+                    <label asp-for="Plantio.DataPlantio" class="control-label"></label>
+                    <input asp-for="Plantio.DataPlantio" class="form-control" />
+                    <span asp-validation-for="Plantio.DataPlantio" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Plantio.Chuva" class="control-label"></label>
+                    <input asp-for="Plantio.Chuva" class="form-control" />
+                    <span asp-validation-for="Plantio.Chuva" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Plantio.TipoPlantio" class="control-label"></label>
+                    <input asp-for="Plantio.TipoPlantio" class="form-control" />
+                    <span asp-validation-for="Plantio.TipoPlantio" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Plantio.TempoPlantio" class="control-label"></label>
+                    <input asp-for="Plantio.TempoPlantio" class="form-control" />
+                    <span asp-validation-for="Plantio.TempoPlantio" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Plantio.UmidadePlantio" class="control-label"></label>
+                    <input asp-for="Plantio.UmidadePlantio" class="form-control" />
+                    <span asp-validation-for="Plantio.UmidadePlantio" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Plantio.SementeId" class="control-label"></label>
+                    <input asp-for="Plantio.SementeId" class="form-control" />
+                    <span asp-validation-for="Plantio.SementeId" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Plantio.QtdSementes" class="control-label"></label>
+                    <input asp-for="Plantio.QtdSementes" class="form-control" />
+                    <span asp-validation-for="Plantio.QtdSementes" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Plantio.DistSementes" class="control-label"></label>
+                    <input asp-for="Plantio.DistSementes" class="form-control" />
+                    <span asp-validation-for="Plantio.DistSementes" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Plantio.Adubacao" class="control-label"></label>
+                    <input asp-for="Plantio.Adubacao" class="form-control" />
+                    <span asp-validation-for="Plantio.Adubacao" class="text-danger"></span>
+                </div>
+                <div class="form-group mt-3">
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                    <a asp-action="Index" class="btn btn-primary">Voltar</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    }

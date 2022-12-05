@@ -11,7 +11,7 @@
         </div>
         <div class="col-sm-6 col-md-2">
             <a asp-action="Create" class="btn btn-primary">
-                Novo Cargo
+                Novo Funcionário
             </a>
         </div>
     </div>
@@ -95,3 +95,8 @@
         </tbody>
     </table>
 </div>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

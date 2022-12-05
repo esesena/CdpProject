@@ -29,9 +29,10 @@ public class Startup
         services.AddScoped<CargoService>();
         services.AddScoped<FazendaService>();
         services.AddScoped<PlantioService>();
-        services.AddScoped<SafraService>();
         services.AddScoped<TalhoesService>();
         services.AddScoped<FuncionarioService>();
+        services.AddScoped<AvisoService>();
+        services.AddScoped<SementeService>();
 
     }
 

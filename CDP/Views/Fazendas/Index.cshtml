@@ -7,11 +7,11 @@
 <div class="container-fluid px-4">
     <div class="row border-bottom mt-2 md-4">
         <div class="col-lg-10 col-sm-6">
-            <h2 class="" style="font-weight:bolder"><i class="bi bi-people"></i>@ViewData["Title"]</h2>
+            <h2 class="" style="font-weight:bolder">@ViewData["Title"]</h2>
         </div>
         <div class="col-sm-6 col-md-2">
             <a asp-action="Create" class="btn btn-primary">
-                Nova @(ViewData["Title"])
+                Nova Fazenda
             </a>
         </div>
     </div>
@@ -53,3 +53,8 @@
         </tbody>
     </table>
 </div>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

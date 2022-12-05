@@ -1,4 +1,4 @@
-﻿@model CDP.Models.Funcionario
+﻿@model FuncionarioFormViewModel
 
 @{
     ViewData["Title"] = "Novo Funcionário";
@@ -17,55 +17,61 @@
         <div class="row mt-4">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="col-md-6">
-                <label asp-for="Nome" class="control-label"></label>
-                <input asp-for="Nome" class="form-control" />
-                <span asp-validation-for="Nome" class="text-danger"></span>
+                <label asp-for="Funcionario.Nome" class="control-label"></label>
+                <input asp-for="Funcionario.Nome" class="form-control" />
+                <span asp-validation-for="Funcionario.Nome" class="text-danger"></span>
             </div>
             <div class="col-md-6">
-                <label asp-for="Cpf" class="control-label"></label>
-                <input asp-for="Cpf" class="form-control" />
-                <span asp-validation-for="Cpf" class="text-danger"></span>
+                <label asp-for="Funcionario.Cpf" class="control-label"></label>
+                <input asp-for="Funcionario.Cpf" class="form-control" />
+                <span asp-validation-for="Funcionario.Cpf" class="text-danger"></span>
             </div>
         </div>
-        <div class="form-group">
-            <label asp-for="IdCargo" class="control-label"></label>
-            <input asp-for="IdCargo" class="form-control" />
-            <span asp-validation-for="IdCargo" class="text-danger"></span>
+        <div class="row mt-4">
+            <div class="col-md-4">
+                <label asp-for="Funcionario.IdCargo" class="control-label"></label>
+                <select asp-for="Funcionario.IdCargo" asp-items="@(new SelectList(Model.Cargos,"Id","Descricao"))" class="form-select"></select>
+                <span asp-validation-for="Funcionario.IdCargo" class="text-danger"></span>
+            </div>
+            <div class="col-md-4">
+                <label asp-for="Funcionario.CargaHoraria" class="control-label"></label>
+                <input asp-for="Funcionario.CargaHoraria" class="form-control" />
+                <span asp-validation-for="Funcionario.CargaHoraria" class="text-danger"></span>
+            </div>
+            <div class="col-md-4">
+                <label asp-for="Funcionario.DataNascimento" class="control-label"></label>
+                <input asp-for="Funcionario.DataNascimento" class="form-control" />
+                <span asp-validation-for="Funcionario.DataNascimento" class="text-danger"></span>
+            </div>
         </div>
-        <div class="form-group">
-            <label asp-for="CargaHoraria" class="control-label"></label>
-            <input asp-for="CargaHoraria" class="form-control" />
-            <span asp-validation-for="CargaHoraria" class="text-danger"></span>
+        <div class="row mt-4">
+            <div class="col-md-4">
+                <label asp-for="Funcionario.Cep" class="control-label"></label>
+                <input asp-for="Funcionario.Cep" id="cep" class="form-control" />
+                <span asp-validation-for="Funcionario.Cep" class="text-danger"></span>
+            </div>
+            <div class="col-md-4">
+                <label asp-for="Funcionario.Logradouro" class="control-label"></label>
+                <input asp-for="Funcionario.Logradouro" class="form-control" />
+                <span asp-validation-for="Funcionario.Logradouro" class="text-danger"></span>
+            </div>
+            <div class="col-md-4">
+                <label asp-for="Funcionario.Bairro" class="control-label"></label>
+                <input asp-for="Funcionario.Bairro" class="form-control" />
+                <span asp-validation-for="Funcionario.Bairro" class="text-danger"></span>
+            </div>
         </div>
-        <div class="form-group">
-            <label asp-for="DataNascimento" class="control-label"></label>
-            <input type="datetime" asp-for="DataNascimento" class="form-control"/>
-            <span asp-validation-for="DataNascimento" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="Cep" class="control-label"></label>
-            <input asp-for="Cep" class="form-control" />
-            <span asp-validation-for="Cep" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="Logradouro" class="control-label"></label>
-            <input asp-for="Logradouro" class="form-control" />
-            <span asp-validation-for="Logradouro" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="Bairro" class="control-label"></label>
-            <input asp-for="Bairro" class="form-control" />
-            <span asp-validation-for="Bairro" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="Cidade" class="control-label"></label>
-            <input asp-for="Cidade" class="form-control" />
-            <span asp-validation-for="Cidade" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="Estado" class="control-label"></label>
-            <input asp-for="Estado" class="form-control" />
-            <span asp-validation-for="Estado" class="text-danger"></span>
+        <div class="row mt-4">
+            <div class="col-md-4">
+                <label asp-for="Funcionario.Cidade" class="control-label"></label>
+                <input asp-for="Funcionario.Cidade" class="form-control" />
+                <span asp-validation-for="Funcionario.Cidade" class="text-danger"></span>
+            </div>
+            <div class="col-md-4">
+                <label asp-for="Funcionario.Estado" class="control-label"></label>
+                <input asp-for="Funcionario.Estado" class="form-control" />
+                <span asp-validation-for="Funcionario.Estado" class="text-danger"></span>
+            </div>
         </div>
 
         <div class="flex-column mt-4">
@@ -74,6 +80,7 @@
         </div>
     </form>
 </div>
+
 
 @section Scripts {
     @{
