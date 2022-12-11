@@ -13,28 +13,60 @@
         </div>
     </div>
 
-    <div class="row">
-        <div class="col-md-4">
-            <form asp-action="Edit">
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <input type="hidden" asp-for="Id" />
-                <div class="form-group">
-                    <label asp-for="Descricao" class="control-label"></label>
-                    <input asp-for="Descricao" class="form-control" />
-                    <span asp-validation-for="Descricao" class="text-danger"></span>
-                </div>
-                <div class="form-group mt-3">
-                    <input type="submit" value="Save" class="btn btn-primary" />
-                    <a asp-action="Index" class="btn btn-primary">Voltar</a>
-                </div>
-            </form>
+    <form asp-action="Edit">
+        <div class="row mt-4">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="Cultura" class="control-label"></label>
+                <select asp-for="Cultura" class="form-control" asp-items="Html.GetEnumSelectList<Cultura>()"></select>
+                <span asp-validation-for="Cultura" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Descricao" class="control-label"></label>
+                <input asp-for="Descricao" class="form-control" />
+                <span asp-validation-for="Descricao" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="HabitoCrescimento" class="control-label"></label>
+                <input asp-for="HabitoCrescimento" class="form-control" />
+                <span asp-validation-for="HabitoCrescimento" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Altura" class="control-label"></label>
+                <input asp-for="Altura" class="form-control" />
+                <span asp-validation-for="Altura" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Floracao" class="control-label"></label>
+                <input asp-for="Floracao" class="form-control" />
+                <span asp-validation-for="Floracao" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Resistencia" class="control-label"></label>
+                <input asp-for="Resistencia" class="form-control" />
+                <span asp-validation-for="Resistencia" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="GrupoMaturacao" class="control-label"></label>
+                <input asp-for="GrupoMaturacao" class="form-control" />
+                <span asp-validation-for="GrupoMaturacao" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ConsumoSementes" class="control-label"></label>
+                <input asp-for="ConsumoSementes" class="form-control" />
+                <span asp-validation-for="ConsumoSementes" class="text-danger"></span>
+            </div>
         </div>
+        <div>
+            <input type="submit" value="Save" class="btn btn-primary" />
+        <a asp-action="Index" class="btn btn-primary">Voltar</a>
     </div>
-
+    </form>
 </div>
 
 @section Scripts {
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
-    }
+}

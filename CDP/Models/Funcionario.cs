@@ -25,7 +25,7 @@ namespace CDP.Models
         public string Cpf { get; set; }
 
         [Display(Name = "Cargo")]
-        public int IdCargo { get; set; }
+        public int CargoId { get; set; }
         public virtual Cargo Cargo { get; set; }
 
         [Display(Name = "Carga Horária")]

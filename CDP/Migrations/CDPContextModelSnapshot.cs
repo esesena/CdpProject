@@ -100,7 +100,7 @@ namespace CDP.Migrations
                     b.Property<int>("CargaHoraria")
                         .HasColumnType("int");
 
-                    b.Property<int?>("CargoId")
+                    b.Property<int>("CargoId")
                         .HasColumnType("int");
 
                     b.Property<string>("Cep")
@@ -125,9 +125,6 @@ namespace CDP.Migrations
                         .IsRequired()
                         .HasMaxLength(2)
                         .HasColumnType("varchar(2)");
-
-                    b.Property<int>("IdCargo")
-                        .HasColumnType("int");
 
                     b.Property<string>("Logradouro")
                         .IsRequired()
@@ -169,10 +166,8 @@ namespace CDP.Migrations
                     b.Property<decimal>("DistSementes")
                         .HasColumnType("decimal(10,2)");
 
-                    b.Property<string>("QtdSementes")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("varchar(100)");
+                    b.Property<decimal>("QtdSementes")
+                        .HasColumnType("decimal(65,30)");
 
                     b.Property<string>("Safra")
                         .IsRequired()
@@ -180,9 +175,6 @@ namespace CDP.Migrations
                         .HasColumnType("varchar(100)");
 
                     b.Property<int>("SementeId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TalhaoId")
                         .HasColumnType("int");
 
                     b.Property<string>("TempoPlantio")
@@ -203,11 +195,35 @@ namespace CDP.Migrations
                     b.ToTable("Plantio");
                 });
 
+            modelBuilder.Entity("CDP.Models.PlantioTalhoes", b =>
+                {
+                    b.Property<int>("PlantioId")
+                        .HasColumnType("int")
+                        .HasColumnOrder(1);
+
+                    b.Property<int>("TalhoesId")
+                        .HasColumnType("int")
+                        .HasColumnOrder(2);
+
+                    b.HasKey("PlantioId", "TalhoesId");
+
+                    b.HasIndex("TalhoesId");
+
+                    b.ToTable("PlantioTalhoes");
+                });
+
             modelBuilder.Entity("CDP.Models.Semente", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    b.Property<decimal>("Altura")
+                        .HasColumnType("decimal(65,30)");
+
+                    b.Property<string>("ConsumoSementes")
+                        .IsRequired()
+                        .HasColumnType("longtext");
 
                     b.Property<int>("Cultura")
                         .HasColumnType("int");
@@ -217,13 +233,20 @@ namespace CDP.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("varchar(100)");
 
-                    b.Property<decimal>("Maturacao")
+                    b.Property<decimal>("Floracao")
                         .HasColumnType("decimal(65,30)");
 
-                    b.Property<string>("Resistencia")
+                    b.Property<decimal>("GrupoMaturacao")
+                        .HasColumnType("decimal(65,30)");
+
+                    b.Property<string>("HabitoCrescimento")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("varchar(100)");
+
+                    b.Property<string>("Resistencia")
+                        .IsRequired()
+                        .HasColumnType("longtext");
 
                     b.HasKey("Id");
 
@@ -310,26 +333,13 @@ namespace CDP.Migrations
                     b.ToTable("Usuarios");
                 });
 
-            modelBuilder.Entity("PlantioTalhoes", b =>
-                {
-                    b.Property<int>("PlantioId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TalhaoId")
-                        .HasColumnType("int");
-
-                    b.HasKey("PlantioId", "TalhaoId");
-
-                    b.HasIndex("TalhaoId");
-
-                    b.ToTable("PlantioTalhoes");
-                });
-
             modelBuilder.Entity("CDP.Models.Funcionario", b =>
                 {
                     b.HasOne("CDP.Models.Cargo", "Cargo")
                         .WithMany("Funcionarios")
-                        .HasForeignKey("CargoId");
+                        .HasForeignKey("CargoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Cargo");
                 });
@@ -343,6 +353,25 @@ namespace CDP.Migrations
                         .IsRequired();
 
                     b.Navigation("Sementes");
+                });
+
+            modelBuilder.Entity("CDP.Models.PlantioTalhoes", b =>
+                {
+                    b.HasOne("CDP.Models.Plantio", "Plantio")
+                        .WithMany("PlantioTalhoes")
+                        .HasForeignKey("PlantioId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("CDP.Models.Talhoes", "Talhoes")
+                        .WithMany("PlantioTalhoes")
+                        .HasForeignKey("TalhoesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Plantio");
+
+                    b.Navigation("Talhoes");
                 });
 
             modelBuilder.Entity("CDP.Models.Talhoes", b =>
@@ -365,21 +394,6 @@ namespace CDP.Migrations
                     b.Navigation("Cargos");
                 });
 
-            modelBuilder.Entity("PlantioTalhoes", b =>
-                {
-                    b.HasOne("CDP.Models.Plantio", null)
-                        .WithMany()
-                        .HasForeignKey("PlantioId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("CDP.Models.Talhoes", null)
-                        .WithMany()
-                        .HasForeignKey("TalhaoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("CDP.Models.Cargo", b =>
                 {
                     b.Navigation("Funcionarios");
@@ -390,6 +404,16 @@ namespace CDP.Migrations
             modelBuilder.Entity("CDP.Models.Fazenda", b =>
                 {
                     b.Navigation("Talhoes");
+                });
+
+            modelBuilder.Entity("CDP.Models.Plantio", b =>
+                {
+                    b.Navigation("PlantioTalhoes");
+                });
+
+            modelBuilder.Entity("CDP.Models.Talhoes", b =>
+                {
+                    b.Navigation("PlantioTalhoes");
                 });
 #pragma warning restore 612, 618
         }

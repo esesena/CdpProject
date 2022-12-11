@@ -23,21 +23,29 @@ namespace CDP.Models
         [StringLength(100, MinimumLength = 3, ErrorMessage = "{0} deve ter entre {2} e {1} caracteres!")]
         public string Descricao { get; set; }
 
-        [Display(Name = "Resistência")]
+        [Display(Name = "Hábito de Crescimento")]
         [Required(ErrorMessage = "{0} é obrigatório!")]
         [StringLength(100, MinimumLength = 3, ErrorMessage = "{0} deve ter entre {2} e {1} caracteres!")]
+        public string HabitoCrescimento { get; set; }
+
+        [Display(Name = "Altura da Planta")]
+        [Required(ErrorMessage = "{0} é obrigatório!")]
+        public decimal Altura { get; set; }
+
+        [Display(Name = "Floração")]
+        [Required(ErrorMessage = "{0} é obrigatório!")]
+        public decimal Floracao { get; set; }
+
+        [Display(Name = "Resistência ao Acamamento")]
+        [Required(ErrorMessage = "{0} é obrigatório!")]
         public string Resistencia { get; set; }
 
-        [Display(Name = "Maturação")]
+        [Display(Name = "Grupo Maturaçãoo")]
         [Required(ErrorMessage = "{0} é obrigatório!")]
-        public decimal Maturacao { get; set; }
+        public decimal GrupoMaturacao { get; set; }
 
-        public Semente(int idSemente, string descricao, string resistencia, decimal maturacao)
-        {
-            Id = idSemente;
-            Descricao = descricao;
-            Resistencia = resistencia;
-            Maturacao = maturacao;
-        }
+        [Display(Name = "Consumo Médio de Sementes")]
+        [Required(ErrorMessage = "{0} é obrigatório!")]
+        public string ConsumoSementes { get; set; }
     }
 }

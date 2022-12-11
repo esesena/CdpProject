@@ -38,13 +38,13 @@ namespace CDP.Controllers
                 return RedirectToAction(nameof(Error), new { message = "Id cargo é nulo" });
             }
 
-            var cargos = await _sementeService.FindByIdAsync(id.Value);
-            if (cargos == null)
+            var sementes = await _sementeService.FindByIdAsync(id.Value);
+            if (sementes == null)
             {
                 return RedirectToAction(nameof(Error), new { message = "Id do cargo não localizado" });
             }
 
-            return View(cargos);
+            return View(sementes);
         }
 
         // GET: Sementes/Create

@@ -28,7 +28,7 @@ namespace CDP.Controllers
             // GET: Funcionarios
             public async Task<IActionResult> Index()
         {
-            var list = await _funcionarioService.FindAllAsync();
+            var list = await _funcionarioService.FindAllAsyncWithCargos();
             return View(list);
         }
 

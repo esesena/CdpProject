@@ -21,9 +21,18 @@
             <div class="row">
                 <div class="col-xl-3 col-md-6">
                     <div class="card bg-primary text-white mb-4">
-                        <div class="card-body">Resolvidas</div>
+                        <div class="card-body">
+                            @foreach (var item in concludedPriority)
+                            {
+                                <dl class="row">
+                                    <dt>@item.Name</dt>
+                                    <dd>@item.Description</dd>
+                                    <dd>---------------------------------------------</dd>
+                                </dl>
+                            }
+                        </div>
                         <div class="card-footer d-flex align-items-center justify-content-between">
-                            <a class="small text-white stretched-link" href="#">View Details</a>
+                            <a class="small text-white stretched-link" href="@Url.Action("Index", "Avisos")">View Details</a>
                             <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                         </div>
                     </div>
@@ -37,11 +46,11 @@
                                 <dl class="row">
                                     <dt>@item.Name</dt>
                                     <dd>@item.Description</dd>
-                                    <dd>--------------------------------</dd>
+                                    <dd>---------------------------------------------</dd>
                                 </dl>
                             }
                             <div class="card-footer d-flex align-items-center justify-content-between">
-                                <a class="small text-white stretched-link" href="#">View Details</a>
+                                <a class="small text-white stretched-link" href="@Url.Action("Index", "Avisos")">View Details</a>
                                 <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                             </div>
                         </div>
@@ -56,11 +65,12 @@
                                 <dl class="row">
                                     <dt>@item.Name</dt>
                                     <dd>@item.Description</dd>
-                                    <a asp-action="~\Views\Avisos\Details" asp-route-id="@item.Id">Detalhes</a>
+                                    <dd>---------------------------------------------</dd>
                                 </dl>
                             }
                         </div>
                         <div class="card-footer d-flex align-items-center justify-content-between">
+                            <a class="small text-white stretched-link" href="@Url.Action("Index", "Avisos")">View Details</a>
                             <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                         </div>
                     </div>
@@ -68,9 +78,18 @@
 
                 <div class="col-xl-3 col-md-6">
                     <div class="card bg-danger text-white mb-4">
-                        <div class="card-body">Prioridade Alta</div>
+                        <div class="card-body">
+                            @foreach (var item in highPriority)
+                            {
+                                <dl class="row">
+                                    <dt>@item.Name</dt>
+                                    <dd>@item.Description</dd>
+                                    <dd>---------------------------------------------</dd>
+                                </dl>
+                            }
+                        </div>
                         <div class="card-footer d-flex align-items-center justify-content-between">
-                            <a class="small text-white stretched-link" href="#">View Details</a>
+                            <a class="small text-white stretched-link" href="@Url.Action("Index", "Avisos")">View Details</a>
                             <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                         </div>
                     </div>
@@ -91,32 +110,22 @@
                     <div class="card mb-4">
                         <div class="card-header">
                             <i class="fas fa-chart-bar me-1"></i>
-                            Produtiviadade
+                            Chart Test 2
                         </div>
-                        <div class="card-body"><canvas id="myBarChart" width="100%" height="40"></canvas></div>
+                        <div class="card-body"><canvas id="myPieChart" width="100%" height="40"></canvas></div>
                     </div>
                 </div>
             </div>
 
             <div class="row">
-                <div class="col-xl-6">
-                    <div class="card mb-4">
-                        <div class="card-header">
-                            <i class="fas fa-chart-area me-1"></i>
-                            Chart Test
-                        </div>
-                        <div class="card-body">
-                            <canvas id="myAreaChart2" width="400" height="150"></canvas>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-6">
+
+                <div class="col-xl-12">
                     <div class="card mb-4">
                         <div class="card-header">
                             <i class="fas fa-chart-bar me-1"></i>
-                            Chart Test 2
+                            Produtiviadade
                         </div>
-                        <div class="card-body"><canvas id="myPieChart" width="100%" height="40"></canvas></div>
+                        <div class="card-body"><canvas id="myBarChart" width="100%" height="40"></canvas></div>
                     </div>
                 </div>
             </div>
@@ -130,13 +139,12 @@
                     <table id="datatablesSimple">
                         <thead>
                             <tr>
-                                <th>Nome</th>
-                                <th>Localização</th>
-                                <th>Tipo de Plantio</th>
-                                <th>Quantidade de Chuva</th>
-                                <th>Data de Inicio</th>
-                                <th>Cultivar</th>
-                                <th>Quantidade de Sementes</th>
+                                <th>Semente</th>
+                                <th>Safra</th>
+                                <th>Cultura</th>
+                                <th>Tipo Plantio</th>
+                                <th>Data do Plantio</th>
+                                <th>Adubacao</th>
                             </tr>
                         </thead>
                         <tfoot>
@@ -146,21 +154,20 @@
                                 <th>Cultivar</th>
                                 <th>Tipo de Plantio</th>
                                 <th>Data de Inicio</th>
-                                <th>Quantidade de Sementes</th>
                             </tr>
                         </tfoot>
                         <tbody>
-                            @*@foreach (var item in plantio)
+                            @foreach (var item in ViewBag.plantio)
                             {
-                                <tr>
-                                    <td>@item.Plantio.Talhao.Nome</td>
-                                    <td>@item.Plantio.Safra</td>
-                                    <td>@item.Cultura</td>
-                                    <td>@item.TipoPlantio</td>
-                                    <td>@item.DataPlantio</td>
-                                    <td>@item.QtdSementes</td>
-                                </tr>
-                            }*@
+                            <tr>
+                            <td>@item.Sementes.Descricao</td>
+                            <td>@item.Safra</td>
+                            <td>@item.Cultura</td>
+                            <td>@item.TipoPlantio</td>
+                            <td>@item.DataPlantio</td>
+                            <td>@item.Adubacao</td>
+                            </tr>
+                            }
                         </tbody>
                     </table>
                 </div>
@@ -173,6 +180,8 @@
     <script>
         var lineYear = ["2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022"];
         var lineData = [10000, 30162, 26263, 18394, 18287, 28682, 31274, 33259, 25849, 24159, 32651, 31984, 38451];
+        var tamanhoTalhao = ["2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022"];
+        var nomeTalhao = [10000, 30162, 26263, 18394, 18287, 28682, 31274, 33259, 25849, 24159, 32651, 31984, 38451];
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>

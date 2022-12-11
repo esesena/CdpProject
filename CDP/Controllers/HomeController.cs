@@ -3,20 +3,24 @@ using CDP.Models.Enums;
 using CDP.Services;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using CDP.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace CDP.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly CDPContext _context;
         private readonly PlantioService _plantioService;
         private readonly TalhoesService _talhoesService;
         private readonly AvisoService _avisoService;
 
-        public HomeController(PlantioService plantioService, TalhoesService talhoesService, AvisoService avisoService)
+        public HomeController(PlantioService plantioService, TalhoesService talhoesService, AvisoService avisoService, CDPContext context)
         {
             _plantioService = plantioService;
             _talhoesService = talhoesService;
             _avisoService = avisoService;
+            _context = context;
         }
 
         public async Task<IActionResult> Index()
@@ -29,9 +33,8 @@ namespace CDP.Controllers
             ViewBag.highPriority = highPriority;
             var concludedPriority = await _avisoService.FindByPriority(3);
             ViewBag.concludedPriority = concludedPriority;
-            var plantio = await _plantioService.FindAllByTalhaoAsync();
+            var plantio = await _plantioService.FindAllWithSementesAsync();
             ViewBag.plantio = plantio;
-
             return View();
         }
 

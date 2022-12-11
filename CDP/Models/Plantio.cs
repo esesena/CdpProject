@@ -54,9 +54,7 @@ namespace CDP.Models
         public virtual Semente Sementes { get; set; }
 
         [Display(Name = "Quantidade de Sementes")]
-        [StringLength(100, MinimumLength = 3, ErrorMessage = "{0} deve ter entre {2} e {1} caracteres!")]
-        [Required(ErrorMessage = "{0} é obrigatório!")]
-        public string QtdSementes { get; set; }
+        public decimal QtdSementes { get; set; }
 
         [Display(Name = "Distribuição de Sementes")]
         [Required(ErrorMessage = "{0} é obrigatório!")]
@@ -69,9 +67,8 @@ namespace CDP.Models
         public string Adubacao { get; set; }
 
         [Display(Name = "Talhões")]
-        [Required(ErrorMessage = "{0} é obrigatório!")]
-        public int TalhaoId { get; set; }
-        public ICollection<Talhoes> Talhao { get; set; }
+        //public int TalhoesId { get; set; }
+        public virtual ICollection<PlantioTalhoes> PlantioTalhoes { get; set; }
 
     }
 }

@@ -1,25 +1,47 @@
 ﻿@model IEnumerable<CDP.Models.Semente>
 
 @{
-    ViewData["Title"] = "Sementes";
+    ViewData["Title"] = "Semente";
 }
 
 <div class="container-fluid px-4">
     <div class="row border-bottom mt-2 md-4">
         <div class="col-lg-10 col-sm-6">
-            <h2 class="" style="font-weight:bolder"><i class="bi bi-people"></i>@ViewData["Title"]</h2>
+            <h2 class="" style="font-weight:bolder">@ViewData["Title"]</h2>
         </div>
         <div class="col-sm-6 col-md-2">
             <a asp-action="Create" class="btn btn-primary">
-                Novo Cargo
+                Nova Semente
             </a>
         </div>
     </div>
+
     <table class="mt-4 table table-hover">
         <thead class="table-primary">
             <tr>
                 <th>
+                    @Html.DisplayNameFor(model => model.Cultura)
+                </th>
+                <th>
                     @Html.DisplayNameFor(model => model.Descricao)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.HabitoCrescimento)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Altura)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Floracao)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Resistencia)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.GrupoMaturacao)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ConsumoSementes)
                 </th>
                 <th></th>
             </tr>
@@ -29,7 +51,28 @@
             {
                 <tr>
                     <td>
+                        @Html.DisplayFor(modelItem => item.Cultura)
+                    </td>
+                    <td>
                         @Html.DisplayFor(modelItem => item.Descricao)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.HabitoCrescimento)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Altura)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Floracao)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Resistencia)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.GrupoMaturacao)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ConsumoSementes)
                     </td>
                     <td>
                         <a asp-action="Edit" asp-route-id="@item.Id"><i class="btn bi bi-pencil-square"></i></a> |

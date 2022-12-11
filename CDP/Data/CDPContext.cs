@@ -5,6 +5,10 @@ namespace CDP.Data
 {
     public class CDPContext : DbContext
     {
+        public CDPContext()
+        {
+        }
+
         public CDPContext (DbContextOptions<CDPContext> options) : base(options)
         {
         }
@@ -24,6 +28,12 @@ namespace CDP.Data
         public DbSet<Talhoes> Talhoes { get; set; }
 
         public DbSet<Aviso> Aviso { get; set; }
+        public DbSet<PlantioTalhoes> PlantioTalhoes { get; set; }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<PlantioTalhoes>()
+                .HasKey(x => new { x.PlantioId, x.TalhoesId });
+        }
     }
 }

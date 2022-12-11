@@ -33,6 +33,7 @@ public class Startup
         services.AddScoped<FuncionarioService>();
         services.AddScoped<AvisoService>();
         services.AddScoped<SementeService>();
+        services.AddScoped<PlantioTalhoesService>();
 
     }
 

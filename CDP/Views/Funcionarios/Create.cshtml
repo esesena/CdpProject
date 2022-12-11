@@ -29,9 +29,9 @@
         </div>
         <div class="row mt-4">
             <div class="col-md-4">
-                <label asp-for="Funcionario.IdCargo" class="control-label"></label>
-                <select asp-for="Funcionario.IdCargo" asp-items="@(new SelectList(Model.Cargos,"Id","Descricao"))" class="form-select"></select>
-                <span asp-validation-for="Funcionario.IdCargo" class="text-danger"></span>
+                <label asp-for="Funcionario.CargoId" class="control-label"></label>
+                <select asp-for="Funcionario.CargoId" asp-items="@(new SelectList(Model.Cargos,"Id","Descricao"))" class="form-select"></select>
+                <span asp-validation-for="Funcionario.CargoId" class="text-danger"></span>
             </div>
             <div class="col-md-4">
                 <label asp-for="Funcionario.CargaHoraria" class="control-label"></label>

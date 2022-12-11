@@ -18,6 +18,11 @@ namespace CDP.Services
             return await _context.Funcionario.OrderBy(x => x.Nome).ToListAsync();
         }
 
+        public async Task<List<Funcionario>> FindAllAsyncWithCargos()
+        {
+            return await _context.Funcionario.OrderBy(x => x.Nome).Include(c => c.Cargo).ToListAsync();
+        }
+
         public async Task InsertAsync(Funcionario obj)
         {
             _context.Add(obj);

@@ -1,5 +1,6 @@
 ﻿using CDP.Data;
 using CDP.Models;
+using CDP.Models.ViewModels;
 using CDP.Services.Exceptions;
 using Microsoft.EntityFrameworkCore;
 
@@ -19,9 +20,9 @@ namespace CDP.Services
             return await _context.Plantio.OrderByDescending(x => x.Safra).ToListAsync();
         }
 
-        public async Task<List<Plantio>> FindAllByTalhaoAsync()
+        public async Task<List<Plantio>> FindAllWithSementesAsync()
         {
-            return await _context.Plantio.OrderByDescending(x => x.Safra).ToListAsync();
+            return await _context.Plantio.OrderByDescending(x => x.Safra).Include(s => s.Sementes).ToListAsync();
         }
 
         public async Task InsertAsync(Plantio obj)
@@ -67,5 +68,7 @@ namespace CDP.Services
                 throw;
             }
         }
+        
+
     }
 }

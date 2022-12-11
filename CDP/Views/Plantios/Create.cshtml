@@ -1,102 +1,99 @@
-﻿@model PlantioFormViewModel
-
-@{
-    var listaTalhoes = ViewBag.listaTalhoes;
-}
+﻿@model CDP.Models.Plantio
 
 @{
     ViewData["Title"] = "Novo Plantio";
 }
 
-<link href="~/css/chosen.min.css" rel="stylesheet" />
-
 <div class="container-fluid px-4">
     <div class="row border-bottom mt-2 md-4">
         <div class="col-lg-10 col-sm-6">
             <h2 class="" style="font-weight:bolder">
-                <i class="bi bi-person-plus m-1"></i>@ViewData["Title"]
+                <i class="m-1"></i>@ViewData["Title"]
             </h2>
         </div>
     </div>
 
     <form asp-action="Create">
-        <div class="row mt-4">
 
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="col-md-3">
-                <label asp-for="Plantio.DataPlantio" class="control-label"></label>
-                <input asp-for="Plantio.DataPlantio" class="form-control" />
-                <span asp-validation-for="Plantio.DataPlantio" class="text-danger"></span>
-            </div>
-            <div class="col-md-3">
-                <label asp-for="Plantio.Cultura" class="control-label"></label>
-                <select asp-for="Plantio.Cultura" asp-items="Html.GetEnumSelectList<Cultura>()" class="form-select"></select>
-                <span asp-validation-for="Plantio.Cultura" class="text-danger"></span>
-            </div>
-            <div class="col-md-3">
-                <label asp-for="Plantio.Safra" class="control-label"></label>
-                <input asp-for="Plantio.Safra" class="form-control" />
-                <span asp-validation-for="Plantio.Safra" class="text-danger"></span>
-            </div>
-            <div class="col-md-3">
-                <label asp-for="Plantio.Chuva" class="control-label"></label>
-                <input asp-for="Plantio.Chuva" class="form-control" />
-                <span asp-validation-for="Plantio.Chuva" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="row mt-3">
-            <div class="col-md-3">
-                <label asp-for="Plantio.Talhao" class="control-label"></label>
-                <select asp-for="Plantio.Talhao" asp-items="@(new SelectList(Model.Talhao,"Id","Nome"))" class="form-select" multiple></select>
-                <span asp-validation-for="Plantio.Talhao" class="text-danger"></span>
-            </div>
-            <div class="col-md-3">
-                <label asp-for="Plantio.TipoPlantio" class="control-label"></label>
-                <select asp-for="Plantio.TipoPlantio" asp-items="Html.GetEnumSelectList<TipoPlantio>()" class="form-select"></select>
-                <span asp-validation-for="Plantio.TipoPlantio" class="text-danger"></span>
-            </div>
-            <div class="col-md-3">
-                <label asp-for="Plantio.TempoPlantio" class="control-label"></label>
-                <input asp-for="Plantio.TempoPlantio" class="form-control" />
-                <span asp-validation-for="Plantio.TempoPlantio" class="text-danger"></span>
-            </div>
-            <div class="col-md-3">
-                <label asp-for="Plantio.UmidadePlantio" class="control-label"></label>
-                <input asp-for="Plantio.UmidadePlantio" class="form-control" />
-                <span asp-validation-for="Plantio.UmidadePlantio" class="text-danger"></span>
-            </div>
-        </div>
         <div class="row mt-4">
-            <div class="col-md-3">
-                <label asp-for="Plantio.SementeId" class="control-label"></label>
-                <select asp-for="Plantio.SementeId" asp-items="@(new SelectList(Model.Sementes,"Id","Descricao"))" class="form-select"></select>
-                <span asp-validation-for="Plantio.SementeId" class="text-danger"></span>
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="col-md-4">
+                <label asp-for="DataPlantio" class="control-label"></label>
+                <input asp-for="DataPlantio" class="form-control" />
+                <span asp-validation-for="DataPlantio" class="text-danger"></span>
             </div>
-            <div class="col-md-3">
-                <label asp-for="Plantio.QtdSementes" class="control-label"></label>
-                <input asp-for="Plantio.QtdSementes" class="form-control" />
-                <span asp-validation-for="Plantio.QtdSementes" class="text-danger"></span>
+            <div class="col-md-4">
+                <label asp-for="Cultura" class="control-label"></label>
+                <select asp-for="Cultura" class="form-control" asp-items="Html.GetEnumSelectList<Cultura>()"></select>
+                <span asp-validation-for="Cultura" class="text-danger"></span>
             </div>
-            <div class="col-md-3">
-                <label asp-for="Plantio.DistSementes" class="control-label"></label>
-                <input asp-for="Plantio.DistSementes" class="form-control" />
-                <span asp-validation-for="Plantio.DistSementes" class="text-danger"></span>
-            </div>
-            <div class="col-md-3">
-                <label asp-for="Plantio.Adubacao" class="control-label"></label>
-                <input asp-for="Plantio.Adubacao" class="form-control" />
-                <span asp-validation-for="Plantio.Adubacao" class="text-danger"></span>
+            <div class="col-md-4">
+                <label asp-for="Safra" class="control-label"></label>
+                <input asp-for="Safra" class="form-control" />
+                <span asp-validation-for="Safra" class="text-danger"></span>
             </div>
         </div>
-        <div class="flex-column mt-4">
-            <a asp-action="Index" class="btn btn-primary">Voltar</a>
-            <input type="submit" value="Cadastrar" class="btn btn-primary" />
+        <div class="row mt-2">
+            <div class="col-md-4">
+                <label asp-for="Chuva" class="control-label"></label>
+                <input asp-for="Chuva" class="form-control" />
+                <span asp-validation-for="Chuva" class="text-danger"></span>
+            </div>
+            <div class="col-md-4">
+                <label asp-for="TipoPlantio" class="control-label"></label>
+                <select asp-for="TipoPlantio" class="form-control" asp-items="Html.GetEnumSelectList<TipoPlantio>()"></select>
+                <span asp-validation-for="TipoPlantio" class="text-danger"></span>
+            </div>
+            <div class="col-md-4">
+                <label asp-for="TempoPlantio" class="control-label"></label>
+                <input asp-for="TempoPlantio" class="form-control" />
+                <span asp-validation-for="TempoPlantio" class="text-danger"></span>
+            </div>
         </div>
-    </form>
-</div>
+        <div class="row mt-2">
+            <div class="col-md-2">
+                <label asp-for="UmidadePlantio" class="control-label"></label>
+                <input asp-for="UmidadePlantio" class="form-control" />
+                <span asp-validation-for="UmidadePlantio" class="text-danger"></span>
+            </div>
+            <div class="col-md-2">
+                <label asp-for="SementeId" class="control-label"></label>
+                <select asp-for="SementeId" class="form-control" asp-items="ViewBag.SementeId"></select>
+            </div>
+            <div class="col-md-2">
+                <label asp-for="QtdSementes" class="control-label"></label>
+                <input asp-for="QtdSementes" class="form-control" />
+                <span asp-validation-for="QtdSementes" class="text-danger"></span>
+            </div>
+            <div class="col-md-2">
+                <label asp-for="DistSementes" class="control-label"></label>
+                <input asp-for="DistSementes" class="form-control" />
+                <span asp-validation-for="DistSementes" class="text-danger"></span>
+            </div>
+            <div class="col-md-2">
+                <label asp-for="Adubacao" class="control-label"></label>
+                <input asp-for="Adubacao" class="form-control" />
+                <span asp-validation-for="Adubacao" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="d-flex align-content-start flex-wrap justify-content-between" style="list-style-type:none;">
+                <div class="col-md-12"><label asp-for="PlantioTalhoes" class="control-label"></label></div>
+                @foreach (var talhoes in ViewBag.Talhoes)
+                {
+                    <li class="me-3"><input type="checkbox" class="form-check-input" name="TalhoesId" value="@talhoes.Id" />
+                        <label class="form-check-label" for="exampleCheck1">@talhoes.Nome</label></li>
+                }
+            </div>
+        </div>
+            <div class="flex-column mt-4">
+                <a asp-action="Index" class="btn btn-primary">Voltar</a>
+                <input type="submit" value="Cadastrar" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
 
 @section Scripts {
-    <script src="~/js/chosen.jquery.js"></script>
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
